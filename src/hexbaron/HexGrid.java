@@ -34,7 +34,7 @@ public class HexGrid {
     }
 
     public void addPiece(boolean belongsToplayer1, String typeOfPiece, int location) {
-        Piece newPiece;
+        Piece newPiece = null;
         switch (typeOfPiece) {
             case "Baron":
                 newPiece = new BaronPiece(belongsToplayer1);
@@ -45,8 +45,11 @@ public class HexGrid {
             case "PBDS":
                 newPiece = new PBDSPiece(belongsToplayer1);
                 break;
-            default:
+            case "Serf":
                 newPiece = new Piece(belongsToplayer1);
+                break;
+            default:
+                System.out.println("Dickhead");
                 break;
         }
         pieces.add(newPiece);
