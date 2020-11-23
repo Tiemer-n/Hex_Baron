@@ -242,6 +242,7 @@ public class HexBaron {
                         if (supplyChange == 1) {
                             player1.removeTileFromSupply();
                         }
+                        
                     } else {
                         returnObjects = grid.executeCommand(items, fuelChange, lumberChange, supplyChange,
                                 player2.getFuel(), player2.getLumber(),

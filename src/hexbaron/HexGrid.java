@@ -45,11 +45,8 @@ public class HexGrid {
             case "PBDS":
                 newPiece = new PBDSPiece(belongsToplayer1);
                 break;
-            case "Serf":
-                newPiece = new Piece(belongsToplayer1);
-                break;
             default:
-                System.out.println("Dickhead");
+                newPiece = new Piece(belongsToplayer1);
                 break;
         }
         pieces.add(newPiece);
@@ -72,7 +69,6 @@ public class HexGrid {
                 
                 //WTF HOW theres nothing here 
                 
-                break;
             case "dig":
                 Object[] returnObjects = executeCommandInTile(items, fuelChange, lumberChange);
                 boolean execute = (boolean) returnObjects[0];
@@ -164,7 +160,7 @@ public class HexGrid {
         return fuelCost;
     }
 
-    private int executeSpawnCommand(List<String> items, int lumberAvailable, int piecesInSupply) {
+    public int executeSpawnCommand(List<String> items, int lumberAvailable, int piecesInSupply) {
         int tileToUse = Integer.parseInt(items.get(1));
         if (piecesInSupply < 1 || lumberAvailable < 3 || !checkTileIndexIsValid(tileToUse)) {
             return -1;
@@ -188,8 +184,7 @@ public class HexGrid {
             return -1;
         }
         Piece newPiece = new Piece(player1Turn);
-        pieces.add(newPiece);
-       tiles.get(tileToUse).setPiece(newPiece);
+        
      
      
         //me attempting to actually have the piece spawn onto the grid
@@ -268,8 +263,10 @@ public class HexGrid {
                 List<Tile> listOfNeighbours = new ArrayList<>(t.getNeighbours());
                 int noOfConnections = 0;
                 for (Tile n : listOfNeighbours) {
-                    if (n.getPieceInTile() != null) {
-                        noOfConnections += 1;
+                    if (n.getPieceInTile() != null && n.pieceInTile.belongsToplayer1 && !t.pieceInTile.belongsToplayer1) {
+                        noOfConnections ++;
+                    }else if (n.getPieceInTile() != null &&  !n.pieceInTile.belongsToplayer1 && t.pieceInTile.belongsToplayer1){
+                        noOfConnections ++;
                     }
                 }
                 Piece thePiece = t.getPieceInTile();
@@ -294,6 +291,8 @@ public class HexGrid {
     }
 
     public String getGridAsString(boolean P1Turn) {
+        
+
         int listPositionOfTile = 0;
         player1Turn = P1Turn;
         Object[] returnObjects = createEvenLine(true, listPositionOfTile);
@@ -303,12 +302,12 @@ public class HexGrid {
         returnObjects = createOddLine(listPositionOfTile);
         gridAsString += returnObjects[0].toString();
         listPositionOfTile = (int) returnObjects[1];
-        for (int count = 1; count < size - 1; count += 2) {
+        for (int count = 1; count < size -1; count +=2) {
             listPositionOfTile += 1;
             returnObjects = createEvenLine(false, listPositionOfTile);
             gridAsString += returnObjects[0].toString();
             listPositionOfTile = (int) returnObjects[1];
-            listPositionOfTile += 1;
+            listPositionOfTile ++;
             returnObjects = createOddLine(listPositionOfTile);
             gridAsString += returnObjects[0].toString();
             listPositionOfTile = (int) returnObjects[1];
