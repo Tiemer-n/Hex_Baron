@@ -114,7 +114,13 @@ public class HexGrid {
     }
 
     private Object[] executeCommandInTile(List<String> items, int fuel, int lumber) {
-        int tileToUse = Integer.parseInt(items.get(1));
+        int tileToUse = 0;
+        try{
+            tileToUse = Integer.parseInt(items.get(1));
+        }catch (Exception e){
+            return new Object[]{false, fuel, lumber};
+        }
+        
         if (checkPieceAndTileAreValid(tileToUse) == false) {
             return new Object[]{false, fuel, lumber};
         }
