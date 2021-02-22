@@ -336,6 +336,14 @@ public class HexBaron {
     
     void printIndex(){
         
+        System.out.println("Commands:");
+        System.out.println("move [starting place] [destination] e.g. [move 8 12] will move piece at index 8 to index 12 as long as its an adjecent tile"+"\n");
+        System.out.println("upgrade [upgrade type] [tile with piece on it]   e.g. [upgrade pbds 30 ] will upgrade piece at tile 30 to a pbds piece "+"\n");
+        System.out.println("saw [tile with LESS piece in it] e.g. [saw 9] will make piece at tile 9 give one piece of wood as long as its a less piece and its in a forst (#)"+"\n");
+        System.out.println("dig [tile with PBDS piece in it] e.g. [dig 11] will make piece at tile 11 give one fule as long as its a pbds and its in a peat bog (~)"+"\n");
+        System.out.println("spawn [tile where it will spawn] e.g. [spawn 1 8] will make the baron spawn a serf in tile 8 ");
+        System.out.println("(only barons can spawn pieces onto the board)"+"\n");
+        
         System.out.println("(index grid)");
         System.out.println("  __    __    __    __    \n" +
                         " /0 \\__/1 \\__/2 \\__/3 \\__\n" +
@@ -348,13 +356,7 @@ public class HexBaron {
                         " \\__/28\\__/29\\__/30\\__/31\\\n" +
                         "    \\__/  \\__/  \\__/  \\__/ ");
         
-        System.out.println("Commands:");
-        System.out.println("move [starting place] [destination] e.g. [move 8 12] will move piece at index 8 to index 12 as long as its an adjecent tile"+"\n");
-        System.out.println("upgrade [upgrade type] [tile with piece on it]   e.g. [upgrade pbds 30 ] will upgrade piece at tile 30 to a pbds piece "+"\n");
-        System.out.println("saw [tile with LESS piece in it] e.g. [saw 9] will make piece at tile 9 give one piece of wood as long as its a less piece and its in a forst (#)"+"\n");
-        System.out.println("dig [tile with PBDS piece in it] e.g. [dig 11] will make piece at tile 11 give one fule as long as its a pbds and its in a peat bog (~)"+"\n");
-        System.out.println("spawn [tile where it will spawn] e.g. [spawn 1 8] will make the baron spawn a serf in tile 8 ");
-        System.out.println("(only barons can spawn pieces onto the board)"+"\n");
+        
     }
     
     
