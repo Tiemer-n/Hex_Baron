@@ -49,6 +49,9 @@ class Piece {
     }
 
     public boolean hasMethod(String methodName) {
+        
+        //if the method name specified as a parameter exists in the object then it returns true, otherwise it returns false.
+        
         try {
             this.getClass().getMethod(methodName, String.class);
             return true;

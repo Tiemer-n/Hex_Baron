@@ -19,6 +19,9 @@ class BaronPiece extends Piece {
 
     @Override
     public int checkMoveIsValid(int distanceBetweenTiles, String startTerrain, String endTerrain) {
+        
+        
+        
         if (distanceBetweenTiles == 1) {
             return fuelCostOfMove;
         }

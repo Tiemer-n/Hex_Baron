@@ -28,16 +28,25 @@ class Tile {
     }
 
     public int getDistanceToTileT(Tile t) {
+        
+        //Returns the maximum of the absolute difference in x, y and z between the current tile and t.
+        
         return Math.max(Math.max(Math.abs(this.getx() - t.getx()),
                 Math.abs(this.gety() - t.gety())),
                 Math.abs(this.getz() - t.getz()));
     }
 
     public void addToNeighbours(Tile N) {
+        
+        //Adds the tile N to the end of the list stored in the protected attribute neighbours.
+        
         neighbours.add(N);
     }
 
     public List<Tile> getNeighbours() {
+        
+        //Returns the value of the protected attribute neighbours.
+        
         return neighbours;
     }
 
@@ -62,10 +71,16 @@ class Tile {
     }
 
     public String getTerrain() {
+        
+        //Returns the value of the protected attribute terrain.
+        
         return terrain;
     }
 
     public Piece getPieceInTile() {
+        
+        //Returns the value of the protected attribute pieceInTile.
+        
         return pieceInTile;
     }
 }

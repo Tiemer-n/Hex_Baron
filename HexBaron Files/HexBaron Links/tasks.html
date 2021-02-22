@@ -1,0 +1,989 @@
+<html> 
+<head> 
+	<title>Hex Baron 2021</title>
+	<script> 
+		/* Toggle between adding and removing the "responsive" class to topnav when the user clicks on the icon */
+		function myFunction() {
+			var x = document.getElementById("myTopnav");
+			if (x.className === "nav") {
+				x.className += " responsive";
+			} else {
+				x.className = "nav";
+			}
+		}
+	</script>	
+	<script src="lightbox/js/jquery-1.10.2.min.js"></script>
+	<script src="lightbox/js/lightbox-2.6.min.js"></script>
+	
+	<link href="style.css" rel="stylesheet" />
+	<link href="lightbox/css/lightbox.css" rel="stylesheet" />
+	<link href='http://fonts.googleapis.com/css?family=Comfortaa:400,300,700' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Sintony:400,700' rel='stylesheet' type='text/css'>
+</head>
+
+<body>
+
+<!-- .container start -->
+<div class="container">
+	
+	<!-- .banner start -->
+	<div class="banner">
+	<img src="images/banner.jpg" style="border:1px solid #000;">
+		<ul id="nav" class="nav" id="myTopnav">		
+		<li><a href="index.html">Introduction</a></li>
+		<li><a href="walkthrough.html">Walkthrough</a></li>
+		<li><a href="diagrams.html">Class Diagram Tasks</a></li>
+		<li><a href="questions.html">Theory Questions</a></li>
+		<li><a href="tasks.html" class="selected">Programming Tasks</a></li>
+		<li><a href="answers.html">Solutions</a></li>	
+		<li class="end">Java Edition</li>		
+	</ul>
+	</div>
+	<!-- .banner end -->	
+
+	
+	<!-- .topic_header start -->
+	<div class="topic_header">
+	<table style="background-color:#ffa64d;"><tr><td><h1><strong>Programming Tasks</h1></td></tr></table>
+	
+	</div>
+	<!-- .topic_header end -->
+	
+	<!-- topic_info start -->		
+		
+	<div class="topic_info">		
+				
+		<div class="textbox" style="margin:0;">						
+			The following questions are provided in PDF format <a href="files/j04-ProgrammingTasks.pdf">here</a>.<br />					
+			An <a href="files/PAPER1_EAD.dotx">Electronic Answer Document (EAD)</a> is provided for all questions/tasks. <strong>Save this file to an accessible location before you start.</strong>			
+		</div>
+		
+		<table style="width:100%"><tr><th>The following questions require you to open the skeleton program and make modifications to it.</th></tr></table>	
+		
+		<p style="font-size:0.95em;"><strong>Jump to:</strong><br />
+		<a href="#q1">Task 1</a> | <a href="#q2">Task 2</a> | <a href="#q3">Task 3</a> | <a href="#q4">Task 4</a> | <a href="#q5">Task 5</a> | <a href="#q6">Task 6</a> | <a href="#q7">Task 7</a> | 
+		<a href="#q8">Task 8</a> | <a href="#q9">Task 9</a> | <a href="#q10">Task 10</a> | <a href="#q11">Task 11</a> | <a href="#q12">Task 12</a> | <a href="#q13">Task 13</a> | <a href="#q14">Task 14</a> | <a href="#q15">Task 15</a></p>
+
+		<hr><a name="q1"><h1><strong>Task 1</strong> (max. 4 marks)</sup></h1></a>		
+		This question refers to the <strong>playGame</strong> subroutine in the main program. <br /><br />
+		
+		The commands input by the player are already converted to lower case, which makes them case-insensitive.  However, sometimes a player may additionally or accidentally type a space at the beginning or end of their command – currently this often causes an invalid command.  <br />		
+		
+		<ul>
+			<li>Create a new subroutine called <strong>strip</strong> to remove any leading and trailing spaces from the command</li>
+			<li>Change the existing line of code that converts the command to lower case, so that it calls the new <strong>strip</strong> subroutine to <em>also</em> remove the unneccesary spaces</li>
+		</ul>
+		
+		Test that the change you have made works:
+
+		<ol type="a">
+			<li>Choose menu option 1 to run the default game and then enter the following commands (they are in quotes as the spaces are important to type):
+				<ul><li>"move 8 16 "</li>
+					<li>"move 8 16"</li>
+					<li>" upgrade pbds 16 "</li>
+				</ul>
+			<li>Show a screen copy of entering the commands and the response from the computer up to the point at which it prints out the Player One current state line.</li>
+		</ol>
+
+		<table class="evidencebox">
+			<tr><th>Evidence that you need to provide:</th></tr>
+			<tr>
+				<td>
+					<ol type="a" class="evidence">
+						<li>Your PROGRAM SOURCE CODE for the amended subroutine <strong>playGame</strong> and the new <strong>strip</strong> subroutine.</li>
+						<li>SCREEN CAPTURE(S) showing the required test.</li>
+					</ol>
+				</td>
+			</tr>
+		</table>
+		
+	
+	
+		<hr><a name="q2"><h1><strong>Task 2</strong> (max. 3 marks)</sup></h1></a>
+
+		This question refers to the <strong>setUpDefaultGame</strong> subroutine in the main program. <br /><br />
+
+		At the moment, the game sets the default names of the players to ‘Player One’ and ‘Player Two’ in the <strong>setUpDefaultGame</strong> subroutine.  Change this subroutine to prompt for the two names of the players and then use the values entered to construct the players.<br /><br />
+
+		Test that the changes you have made work:
+
+		<ol type="a">
+			<li>Choose menu option 1 to run the default game and then enter “Tom” as the name for Player One and ‘Vicky’ as the name for Player Two.</li>			
+			<li>Show a screen copy of entering the commands and the responses from the computer up to and including the prompt for the first player to enter their commands.</li>
+		</ol>
+
+		<table class="evidencebox">
+			<tr><th>Evidence that you need to provide:</th></tr>
+			<tr>
+				<td>
+					<ol type="a" class="evidence">
+						<li>Your PROGRAM SOURCE CODE for the amended subroutine <strong>setUpDefaultGame</strong>.</li>
+						<li>SCREEN CAPTURE(S) showing the required test.</li>						
+					</ol>
+				</td>
+			</tr>
+		</table>
+		
+	
+	
+		<hr><a name="q3"><h1><strong>Task 3</strong> (max. 4 marks)</sup></h1></a>
+		
+		This question refers to the <strong>playGame</strong> and <strong>setUpDefaultGame</strong> subroutines in the main program, to the <strong>Player</strong> class and to the <strong>destroyPiecesAndCountVPs</strong> method in the <strong>HexGrid</strong> class.<br /><br />
+
+		Normally when a piece is destroyed it depletes your supply chain and moves you one step closer to losing the game as the number of pieces that you can make is limited.  This rule has been changed so that if a piece is destroyed then you gain one piece in your supply chain.  
+
+		<ul>
+			<li>Add a method to the <strong>Player</strong> class that will allow the piecesInSupply protected attribute to be modified.</li>
+			<li>Modify the <strong>destroyPiecesAndCountVPs</strong> method to take player1 and player2 as parameters and pass them in from <strong>playGame</strong> in both places that it is called.</li>
+			<li>Further modify the <strong>destroyPiecesAndCountVPs</strong> method so that it calls the <strong>addPiecesInSupply</strong> method that you created for the appropriate player to give them an additional piece in their supply every time one of their pieces is destroyed.</li>
+			<li>Modify the <strong>setUpDefaultGame</strong> subroutine so that the existing four addPiece commands are replaced with the following six: <br />
+			
+			<pre>grid.addPiece(true, "Baron", 0);
+grid.addPiece(true, "Serf", 7);
+grid.addPiece(true, "Serf", 13);
+grid.addPiece(false, "Baron", 31);
+grid.addPiece(false, "Serf", 15);
+grid.addPiece(false, "Serf", 23);</pre>
+			</li>
+		</ul>
+		
+		Test that the changes you have made work:
+
+		<ol type="a">
+			<li>Choose menu option 1 to run the default game and then enter the following commands:</li>
+				<ul><li>move 13 10</li>
+					<li>move 10 14</li>
+					<li>move 14 19</li>
+				</ul>
+			<li>Show a screen copy of entering the commands and the responses from the computer up to and including the prompt for the second player to enter their commands.</li>
+		</ol>
+		
+		<table class="evidencebox">
+			<tr><th>Evidence that you need to provide:</th></tr>
+			<tr>
+				<td>
+					<ol type="a" class="evidence">
+						<li>Your PROGRAM SOURCE CODE for the amended subroutine <strong>playGame</strong>, the <strong>destroyPiecesAndCountVPs</strong> method of the <strong>HexGrid</strong> class and the new code for the <strong>Player</strong> class.</li>
+						<li>SCREEN CAPTURE(S) showing the required test.</li>						
+					</ol>
+				</td>
+			</tr>
+		</table>
+
+		
+		
+		<hr><a name="q4"><h1><strong>Task 4</strong> (max. 4 marks)</sup></h1></a>
+
+		This question refers to the <strong>setUpDefaultGame</strong> subroutine in the main program and to the <strong>executeSpawnCommand</strong> method in the <strong>HexGrid</strong> class.<br /><br />
+
+		Change the rules of the game so that each player can have a maximum of six pieces in play at any given time.  There should be an additional output message generated saying that the ‘Spawn attempted to exceed max pieces.’<br />
+
+		<ul><li>Modify the private method <strong>executeSpawnCommand</strong> of the <strong>HexGrid</strong> class.</li>
+			<li>Modify the <strong>setUpDefaultGame</strong> subroutine so that the existing four addPiece commands are replaced with the following eight:
+
+<pre>grid.addPiece(true, "Baron", 0);
+grid.addPiece(true, "Serf", 8);
+grid.addPiece(true, "Serf", 24);
+grid.addPiece(true, "Serf", 5);
+grid.addPiece(true, "Serf", 2);
+grid.addPiece(true, "Serf", 3);
+grid.addPiece(false, "Baron", 31);
+grid.addPiece(false, "Serf", 23);
+</pre>		
+			</li>
+		</ul>
+	
+		Test that the changes you have made work:<br />
+
+		<ol type="a">
+			<li>Choose menu option 1 to run the default game and then enter the following commands:</li>
+			<ul><li>spawn 4</li>
+				<li>move 4 9</li>
+				<li>move 9 17</li>
+			</ul>
+			<li>Show a screen copy of entering the commands and the responses from the computer up to the point at which it prints out the Player One current state line.</li>
+		</ol>	
+				
+		<table class="evidencebox">
+			<tr><th>Evidence that you need to provide:</th></tr>
+			<tr>
+				<td>
+					<ol type="a" class="evidence">
+						<li>Your PROGRAM SOURCE CODE for the amended <strong>executeSpawnCommand</strong> method of the <strong>HexGrid</strong> class.</li>						
+						<li>SCREEN CAPTURE(S) showing the required test.</li>						
+					</ol>
+				</td>
+			</tr>
+		</table>
+
+		
+		
+		<hr><a name="q5"><h1><strong>Task 5</strong> (max. 9 marks)</sup></h1></a>
+
+		This question refers to the <strong>playGame</strong> subroutine in the main program, and to a new method <strong>getGridAsIndices</strong> in the <strong>HexGrid</strong> class.<br /><br />
+
+		Add an additional command to the game which will print out the hex grid and show the index for each hex; these should be in the top half of each hex and the board should be the same size as the normal display.  The new command, “hexes” should not count as one of the three commands that you enter and the results should be displayed immediately upon entry, i.e. the grid should be printed out with the numbers displayed as soon as Enter is pressed. The player should be able to enter hexes for any one of their commands and still have three normal commands.
+
+		<ul>
+			<li>Create a new method for the <strong>HexGrid</strong> class called <strong>getGridAsIndices</strong> which will return a string containing the grid with all of the index numbers in the correct places; this could be based on the current <strong>getGridAsString</strong> method. You may wish to duplicate and then modify the <strong>createOddLine</strong> and <strong>createEvenLine</strong> methods.</li>
+			<li>Modify the <strong>playGame</strong> subroutine to implement a call to the new method whenever a player enters the command “hexes” and then request the normal command.</li>
+		</ul>
+
+		Test that the changes you have made work:
+
+		<ol type="a">
+			<li>Choose menu option 1 to run the default game and then enter the following commands:</li>
+				<ul><li>move 8 16</li>
+					<li>hexes</li>
+					<li>move 16 24</li>
+					<li>hexes </li>
+					<li>hexes</li>
+					<li>upgrade pbds 24</li>
+				</ul>
+			<li>Show a screen copy of entering the commands and the responses from the computer up to and including the prompt for the second player to enter their commands, including the printout of the hex grid with the numbers and the printout of the board after Player One has completed their move.</li>
+		</ol>	
+				
+		<table class="evidencebox">
+			<tr><th>Evidence that you need to provide:</th></tr>
+			<tr>
+				<td>
+					<ol type="a" class="evidence">
+						<li>Your PROGRAM SOURCE CODE for the amended subroutine <strong>playGame</strong>, the <strong>getGridAsIndices</strong> method of the <strong>HexGrid</strong> class and any new methods such as modified versions of <strong>createOddLine</strong> and <strong>createEvenLine</strong> added to the <strong>HexGrid</strong> class.</li>
+						<li>SCREEN CAPTURE(S) showing the required test.</li>						
+					</ol>
+				</td>
+			</tr>
+		</table>
+	
+	
+	
+		<hr><a name="q6"><h1><strong>Task 6</strong> (max. 4 marks)</sup></h1></a>
+
+		This question refers to the <strong>playGame</strong> and <strong>setUpDefaultGame</strong> subroutines in the main program.<br /><br />
+
+		Change the move command so that if you move the same piece three times in a row, you get a reduction in cost of 1 fuel (in total).  For example, if you moved a Serf to a field (from a field), then to a peat bog and then to a field, it would only cost 4 fuel instead of 5.  If you moved a Baron three squares, it would only cost 2 fuel instead of 3.  They should be able to do the triple move even if it causes their fuel to end up on 0.
+
+		<ul>
+			<li>Modify the <strong>playGame</strong> subroutine to check whether three valid move commands have been executed by the player and refund them one fuel.
+			<li>Modify the <strong>setUpDefaultGame</strong> subroutine so that Player One only starts with 2 fuel:
+				<pre>player1.setUpPlayer("Player One", 0, 2, 10, 5);</pre>
+			</li>
+		</ul>
+
+		Test that the changes you have made work:
+
+		<ol type="a">
+			<li>Choose menu option 1 to run the default game and then enter the following commands:</li>
+				<ul><li>move 0 4</li>
+					<li>move 4 9</li>
+					<li>move 9 17</li>
+				</ul>
+			<li>Show a screen copy of entering the commands and the responses from the computer up to the point at which it prints out the Player One current state line.</li>
+		</ol>	
+				
+		<table class="evidencebox">
+			<tr><th>Evidence that you need to provide:</th></tr>
+			<tr>
+				<td>
+					<ol type="a" class="evidence">
+						<li>Your PROGRAM SOURCE CODE for the amended subroutine <strong>playGame</strong>.</li>						
+						<li>SCREEN CAPTURE(S) showing the required test.</li>						
+					</ol>
+				</td>
+			</tr>
+		</table>
+		
+		
+		
+		<hr><a name="q7"><h1><strong>Task 7</strong> (max. 7 marks)</sup></h1></a>
+
+		This question refers to the <strong>playGame</strong> subroutine in the main program and to the <strong>executeCommandInTile</strong> method and a new method, <strong>makeField</strong>, in the <strong>HexGrid</strong> class.<br /><br />
+
+		Change the saw and dig commands so that if you saw or dig the same location three times in a row in the same turn then you get 5 of that resource and the terrain reverts to a field.  Remove the random chance of getting 5 fuel when you dig so that you always get only 1.
+
+		<ul>
+			<li>Modify the <strong>executeCommandInTile</strong> to remove the possibility of a dig command generating a field.</li>
+			<li>Modify the <strong>dig</strong> method of the <strong>PBDSPiece</strong> class to remove the possibility of a dig command generating 5 fuel.</li>
+			<li>Add a method to the <strong>HexGrid</strong> class called <strong>makeField</strong> which has one parameter, the index of the tile which is to be made into a field.</li>
+			<li>Modify the <strong>playGame</strong> subroutine to check whether three dig or saw commands have been executed in a single turn by either player and give them the extra resources and turn the tile into a field by calling the newly added <strong>makeField</strong> method in the <strong>HexGrid</strong> class.</li>
+		</ul>
+
+		Test that the changes you have made work:
+
+		<ol type="a">
+			<li>Choose menu option 1 to run the default game and then enter the following commands:
+
+				<table>
+					<tr><td>Player One</td>
+						<td>
+							<ul class="moves">
+								<li>move 8 16</li>
+								<li>move 16 24</li>
+								<li>upgrade pbds 24</li>
+							</ul>
+						</td>						
+					<tr><td>Player Two</td>
+						<td>
+							<ul class="moves">
+								<li>move 23 27</li>
+								<li>move 27 30</li>
+								<li>upgrade less 30</li>
+							</ul>
+						</td>
+					<tr><td>Player One</td>
+						<td>
+							<ul class="moves">
+								<li>dig 24</li>
+								<li>dig 24</li>
+								<li>dig 24</li>
+							</ul>
+						</td>
+					<tr><td>Player Two</td>
+						<td>
+							<ul class="moves">
+								<li>saw 30</li>
+								<li>saw 30</li>
+								<li>saw 30</li>
+							</ul>						
+						</td>
+					</tr>
+				</table>
+			</li>
+
+			<li>Show a screen copy of the final board after all of the commands have been executed and include the Player One and Player Two current states that are shown immediately before the final board print.</li>
+		</ol>	
+				
+		<table class="evidencebox">
+			<tr><th>Evidence that you need to provide:</th></tr>
+			<tr>
+				<td>
+					<ol type="a" class="evidence">
+						<li>Your PROGRAM SOURCE CODE for the amended subroutine <strong>playGame</strong>, the <strong>executeCommandInTile</strong> and <strong>makeField</strong> methods of the <strong>HexGrid</strong> class, and the modified <strong>dig</strong> method of the <strong>PBDSPiece</strong> class</li>	
+						<li>SCREEN CAPTURE(S) showing the required test.</li>						
+					</ol>
+				</td>
+			</tr>
+		</table>
+		
+		
+		
+		<hr><a name="q8"><h1><strong>Task 8</strong> (max. 7 marks)</sup></h1></a>
+
+		This question refers to the <strong>checkCommandIsValid</strong> and <strong>setUpDefaultGame</strong> subroutines in the main program, the creation of a new subroutine, <strong>checkDowngradeCommandFormat</strong> and to a new method, <strong>executeDowngradeCommand</strong> &ndash; as well as the <strong>executeCommand</strong> method in the <strong>HexGrid</strong> class.<br /><br />
+
+		Introduce a new downgrade command so that a PDBS or LESS can be downgraded to a Serf for a cost of 1 lumber.  The syntax for the command is “downgrade NUM” where NUM is the location of the piece to be downgraded.
+
+		<ul>
+			<li>Modify the <strong>checkCommandIsValid</strong> subroutine to allow for and check the format of the new downgrade command.</li>
+			<li>Create a new subroutine <strong>checkDowngradeCommandFormat</strong> which is called by the modified <strong>checkCommandIsValid</strong> subroutine.</li>
+			<li>Modify the <strong>executeCommand</strong> method of <strong>HexGrid</strong> to call a new private method <strong>executeDowngradeCommand</strong>.</li>
+			<li>Create a new private method in <strong>HexGrid</strong> called <strong>executeDowngradeCommand</strong>.</li>
+			<li>Modify the <strong>setUpDefaultGame</strong> subroutine so that Player One Serf piece starts at location 16:
+				<pre>grid.addPiece(true, "Serf", 16);</pre>
+			</li>
+		</ul>		
+
+		Test that the changes you have made work:
+
+		<ol type="a">
+			<li>Choose menu option 1 to run the default game and then enter the following commands:</li>
+				<ul><li>move 16 24
+					<li>upgrade pbds 24
+					<li>downgrade 24
+				</ul>
+			<li>Show a screen copy of entering the commands and the responses from the computer up to the point after it prints out the updated board.</li>
+		</ol>	
+				
+		<table class="evidencebox">
+			<tr><th>Evidence that you need to provide:</th></tr>
+			<tr>
+				<td>
+					<ol type="a" class="evidence">
+						<li>Your PROGRAM SOURCE CODE for the amended subroutine <strong>checkCommandIsValid</strong>, the new subroutine <strong>checkDowngradeCommandFormat</strong>, the <strong>executeCommand</strong> method of the <strong>HexGrid</strong> class and the new code for the <strong>executeDowngradeCommand</strong> method of <strong>HexGrid</strong>.</li>						
+						<li>SCREEN CAPTURE(S) showing the required test.</li>
+					</ol>
+				</td>
+			</tr>
+		</table>
+		
+		
+		<hr><a name="q9"><h1><strong>Task 9</strong> (max. 3 marks)</sup></h1></a>
+
+		This question refers to the <strong>setUpDefaultGame</strong> subroutine in the main program and to the <strong>BaronPiece</strong> class.<br /><br />
+
+		Change the rules for the Baron so that it needs three connections to kill it.
+
+		<ul>
+			<li>Modify the <strong>BaronPiece</strong> class to make it so that it can only be destroyed by three connections.</li>
+			<li>Modify the <strong>setUpDefaultGame</strong> subroutine so that the four starting pieces are replaced with the following seven:
+
+<pre>grid.addPiece(true, "Baron", 0);
+grid.addPiece(true, "Serf", 15);
+grid.addPiece(true, "Serf", 27);
+grid.addPiece(true, "Serf", 25);
+grid.addPiece(false, "Baron", 19);
+grid.addPiece(false, "Serf", 8);
+grid.addPiece(false, "Serf", 2);
+</pre>
+			</li>
+		</ul>
+
+		Test that the changes you have made work:
+
+		<ol type="a">
+			<li>Choose menu option 1 to run the default game and then enter the following commands:			
+			
+				<table>
+					<tr><td>Player One</td>
+						<td>
+							<ul class="moves">
+								<li>move 25 21</li>
+								<li>move 21 18</li>
+								<li>move 18 14</li>
+							</ul>
+						</td>						
+					<tr><td>Player Two</td>
+						<td>
+							<ul class="moves">
+								<li>move 2 5</li>
+								<li>move 5 1</li>
+								<li>move 1 4</li>
+							</ul>
+						</td>
+					</tr>
+				</table>
+			</li>
+		
+			<li>Show a screen copy of entering the commands for the entire game.</li>
+		</ol>	
+				
+		<table class="evidencebox">
+			<tr><th>Evidence that you need to provide:</th></tr>
+			<tr>
+				<td>
+					<ol type="a" class="evidence">
+						<li>Your PROGRAM SOURCE CODE for the amended <strong>BaronPiece</strong> class.</li>						
+						<li>SCREEN CAPTURE(S) showing the required test.</li>
+					</ol>
+				</td>
+			</tr>
+		</table>
+		
+		
+		
+		<hr><a name="q10"><h1><strong>Task 10</strong> (max. 4 marks)</sup></h1></a>
+
+		This question refers to the <strong>checkCommandIsValid</strong> subroutine in the main program and to the <strong>executeCommand</strong> method and a new <strong>executeSalvageCommand</strong> method in the <strong>HexGrid</strong> class. <br /><br />
+
+		Develop the salvage command.  Any of your own Serf, PBDS or LESS pieces can be salvaged.  Salvaging a piece will add 1 to your supply chain, give you 5 lumber and remove the piece from the board.  The format of the command is salvage NUM, where NUM is the location on the board of the piece to salvage.		
+
+		<ul>
+			<li>Modify the <strong>checkCommandIsValid</strong> subroutine to allow for and check the format of the new salvage command.</li>
+			<li>Modify the <strong>executeCommand</strong> method of <strong>HexGrid</strong> to call a new private method <strong>executeSalvageCommand</strong>.</li>
+			<li>Create a new private method in <strong>HexGrid</strong> called <strong>executeSalvageCommand</strong>.</li>
+		</ul>
+
+		Test that the changes you have made work:
+
+		<ol type="a">
+			<li>Choose menu option 1 to run the default game and then enter the following commands:</li>
+				<ul><li>salvage 31</li>
+					<li>salvage 4</li>
+					<li>salvage 8</li>
+				</ul>
+			<li>Show a screen copy of entering the commands and the response from the computer up to the point at which it prints out the updated board.</li>
+		</ol>	
+				
+		<table class="evidencebox">
+			<tr><th>Evidence that you need to provide:</th></tr>
+			<tr>
+				<td>
+					<ol type="a" class="evidence">
+						<li>Your PROGRAM SOURCE CODE for the amended subroutine <strong>checkCommandIsValid</strong> and the <strong>executeCommand</strong> and <strong>executeSalvageCommand</strong> methods of the <strong>HexGrid</strong> class.</li>						
+						<li>SCREEN CAPTURE(S) showing the required test.</li>
+					</ol>
+				</td>
+			</tr>
+		</table>
+				
+
+		<hr><a name="q11"><h1><strong>Task 11</strong> (max. 10 marks)</sup></h1></a>
+
+		This question refers to the <strong>playGame</strong> subroutine in the main program and to the <strong>Player</strong> class. <br /><br />
+
+		Introduce three chances for each player so that if they enter an invalid move or a move that could not be executed for some reason, they can correct it, but only three times per game.  The system should prompt them to re-enter the invalid move and deduct 1 from their chances.  The remaining chances should be printed out each time a player uses up a chance and at the start of each player’s turn.  <br /><br />
+
+		Also, as the commands and replacements could now be confusing, make sure that each time a player is asked for a command or a replacement command they are told which command number they are entering/re-entering.
+		
+		<ul>
+			<li>Modify the <strong>Player</strong> class to create an attribute called <strong>chances</strong> for their three chances.</li>
+			<li>Modify the <strong>playGame</strong> subroutine so that it allows the player to enter a replacement command if their command is invalid or could not be executed for some reason.</li>
+			<li>Create three new methods for the <strong>Player</strong> class to control access to the <strong>chances</strong> attribute: <strong>deductChance</strong>, <strong>getChances</strong> and <strong>resetChances</strong>.</li>
+			<li>By way of example and clarity, the testing output for the first turn of Player One should start as follows: <br /><img src="images/task11.png" style="margin-top:5px; border:none;">
+		</ul>
+		
+		Test that the changes you have made work:
+
+		<ol type="a">
+			<li>Choose menu option 1 to run the default game and then enter the following input, waiting for a prompt between each entry:</li>
+			
+				<table>
+					<tr><td>Player One</td>
+						<td>
+							<ul class="moves">
+								<li>move</li>
+								<li>move 8 8</li>
+								<li>upgrade less 28</li>
+								<li>move 8 16</li>
+								<li>move 16 20</li>
+								<li>move 20 28</li>
+								<li>Enter <em>(for Player Two’s turn)</em></li>
+							</ul>
+						</td>						
+					<tr><td>Player Two</td>
+						<td>
+							<ul class="moves">								
+								<li>move 27 30</li>
+								<li>upgrade less 30</li>
+								<li>Enter <em>(for Player One’s turn)</em></li>
+				
+							</ul>
+						</td>
+					<tr><td>Player One</td>
+						<td>
+							<ul class="moves">
+								<li>upgrade less 28
+								<li>saw 28
+								<li>saw 29
+								<li>Enter <em>(for Player Two’s turn)</em></li>
+							</ul>
+						</td>						
+				</table>
+
+			<li>Show a screen copy of entering the commands and all the responses from the computer.</li>
+		</ol>	
+				
+		<table class="evidencebox">
+			<tr><th>Evidence that you need to provide:</th></tr>
+			<tr>
+				<td>
+					<ol type="a" class="evidence">
+						<li>Your PROGRAM SOURCE CODE for the amended <strong>playGame</strong> subroutine and <strong>Player</strong> class.</li>
+						<li>SCREEN CAPTURE(S) showing the required test.</li>
+					</ol>
+				</td>
+			</tr>
+		</table>
+		
+		
+		<hr><a name="q12"><h1><strong>Task 12</strong> (max. 13 marks)</sup></h1></a>
+
+		This question refers to the <strong>checkCommandIsValid</strong> and <strong>setUpDefaultGame</strong> subroutines and a new  <strong>checkSpawnCommandFormat</strong> subroutine in the main program, to a new <strong>BombPiece</strong> class, to the <strong>Piece</strong> class and to the <strong>executeSpawnCommand</strong>, <strong>destroyPiecesAndCountVPs</strong>, <strong>getPieceTypeInTile</strong> and <strong>executeMoveCommand</strong> methods in the <strong>HexGrid</strong> class. <br /><br />
+
+		Develop a Bomb piece.  The bomb can only be spawned by the Baron but should look like a Serf piece. It costs 10 lumber to spawn and 2 fuel for each space that it moves regardless of the terrain. <br /><br />
+		
+		When the bomb explodes it will destroy all pieces in the hexes adjacent to the hex containing the bomb.  It will explode if two pieces are adjacent to it (as per normal attacks), but the bomb has a further ability.   <br /><br />
+		
+		Once the bomb has moved five spaces it is immobilised and becomes ‘primed’: any piece newly entering (even in the middle of a move) one of the hexes surrounding the bomb will cause it to explode.  The bomb will not explode if it is primed next to an existing piece (but of course it will if primed next to two existing pieces), only if another piece enters a hex next to it, kind of like a motion detector.  <br /><br />
+		
+		The command is a modification of the spawn command, so now spawn can optionally take a second argument of bomb, e.g. spawn bomb NUM would spawn a bomb at NUM if NUM is adjacent to the Baron, and spawn NUM would operate as normal.  The bomb has a VP value of 5, meaning that when it explodes, the opposing player receives 5 VPs.
+
+		<ul>
+			<li>Modify the <strong>checkCommandIsValid</strong> subroutine to make the new spawn command function correctly.</li>
+			<li>Create a new subroutine called  <strong>checkSpawnCommandFormat</strong> that is called from the modified <strong>checkCommandIsValid</strong> to make sure that the new spawn bomb command is valid.</li>
+			<li>Modify the private method <strong>executeSpawnCommand</strong> so that it will spawn a bomb and charge the player 10 lumber or report an error if they don’t have enough lumber.</li>
+			<li>Create a new <strong>BombPiece</strong> class for the bomb.</li>
+			<li>Modify the method <strong>destroyPiecesAndCountVPs</strong> so that if a bomb is destroyed then it explodes and destroys the surrounding pieces too.</li>
+			<li>Modify the method <strong>getPieceTypeInTile</strong> for <strong>HexGrid</strong> so that the bomb piece appears as a Serf when the board is displayed.</li>
+			<li>Modify the private method <strong>executeMoveCommand</strong> so that it checks whether the player moved next to a primed bomb, and explodes the bomb if it did.</li>
+			<li>Modify the <strong>Piece</strong> class to add an <strong>explode</strong> method so that it can be destroyed at the end of the turn in case a bomb was set off during the turn.</li>
+			<li>Modify the <strong>setUpDefaultGame</strong> subroutine so that both players start with 30 of each resource:
+
+<pre>player1.setUpPlayer("Player One", 0, 30, 30, 5);
+player2.setUpPlayer("Player Two", 1, 30, 30, 5);
+</pre>
+
+			</li>
+		</ul>		
+		
+		Test that the changes you have made work:
+
+		<ol type="a">
+			<li>Choose menu option 1 to run the default game and then enter the following commands:
+
+				<table>
+					<tr><td>Player One</td>
+						<td>
+							<ul class="moves">
+								<li>spawn bomb 4</li>
+								<li>move 4 9</li>
+								<li>move 9 13</li>
+							</ul>
+						</td>						
+					<tr><td>Player Two</td>
+						<td>
+							<ul class="moves">
+								<li>move 23 19</li>
+								<li>move 19 11</li>
+								<li>move 11 14</li>
+							</ul>
+						</td>
+					<tr><td>Player One</td>
+						<td>
+							<ul class="moves">
+								<li>move 13 18</li>
+								<li>move 18 22</li>
+								<li>move 22 27</li>
+							</ul>
+						</td>						
+					<tr><td>Player One</td>
+						<td>
+							<ul class="moves">
+								<li>move 31 23</li>
+								<li>move 14 18</li>
+								<li>move 18 22</li>
+							</ul>
+						</td>
+					</tr>
+				</table>
+				
+			</li>
+			<li>Show a screen copy of entering the commands and the responses from the computer up to the point at which it prints out that Player One is the winner.</li>
+			<li>Choose menu option 1 to run the default game and then enter the following commands:
+				
+				<table>
+					<tr><td>Player One</td>
+						<td>
+							<ul class="moves">
+								<li>spawn bomb 4</li>
+								<li>move 4 9</li>
+								<li>move 9 13</li>
+							</ul>
+						</td>						
+					<tr><td>Player Two</td>
+						<td>
+							<ul class="moves">
+								<li>move 23 19</li>
+								<li>upgrade less 19</li>
+								<li>saw 19</li>
+							</ul>
+						</td>
+					<tr><td>Player One</td>
+						<td>
+							<ul class="moves">
+								<li>move 13 18</li>
+								<li>move 18 22</li>
+								<li>move 22 27</li>
+							</ul>
+						</td>		
+					</tr>
+					<tr><td>Player Two</td>
+						<td>
+							<ul class="moves">
+								<li>saw 19</li>
+								<li>saw 19</li>
+								<li>saw 19</li>
+							</ul>
+						</td>
+				</table>
+			</li>
+
+			<li>Show a screen copy of entering the commands and the responses from the computer up to the point at which it prints out that Player One is the winner.</li>
+			
+		</ol>	
+		
+		<table class="evidencebox">
+			<tr><th>Evidence that you need to provide:</th></tr>
+			<tr>
+				<td>
+					<ol type="a" class="evidence">
+						<li>Your PROGRAM SOURCE CODE for the modified <strong>checkCommandIsValid</strong> and the new  <strong>checkSpawnCommandFormat</strong> subroutines, the new <strong>BombPiece</strong> class, the modified <strong>Piece</strong> class and the modified methods <strong>executeSpawnCommand</strong>, <strong>destroyPiecesAndCountVPs</strong>, <strong>getPieceTypeInTile</strong> and <strong>executeMoveCommand</strong> of the <strong>HexGrid</strong> class.</li>
+						<li>SCREEN CAPTURE(S) showing the required test.</li>						
+					</ol>
+				</td>
+			</tr>
+		</table>
+		
+		
+		
+		<hr><a name="q13"><h1><strong>Task 13</strong> (max. 10 marks)</sup></h1></a>
+
+		This question refers to the <strong>playGame</strong>, <strong>checkUpgradeCommandFormat</strong> and <strong>setUpDefaultGame</strong> subroutines in the main program, to the new <strong>WizardPiece</strong> class and to the <strong>executeUpgradeCommand</strong> and new <strong>resetWizards</strong> methods in the <strong>HexGrid</strong> class.<br /><br />
+
+		Introduce a new piece, a Wizard which can teleport a distance of three spaces but only once per turn; this costs 5 fuel. It can also move one square for a cost of 1 fuel.  The piece can be created by upgrading a Serf using the new command upgrade wiz NUM, where NUM is the location of a hex containing a Serf. To move the wizard, you simply use the move command as normal and if the distance is two or three squares then it teleports, if it is one square then it moves normally and if it is more than three squares then it is an invalid move.  The wizard should be displayed with W for Player One and w for Player Two and should have a VP value of 3.
+
+		<ul>
+			<li>Create a new <strong>WizardPiece</strong> class.
+			<li>Modify the <strong>checkUpgradeCommandFormat</strong> subroutine to allow for the new wiz upgrade command.
+			<li>Modify the method <strong>executeUpgradeCommand</strong> to create the new wizard piece if spawned.
+			<li>Add a new method to the <strong>HexGrid</strong> class called <strong>resetWizards</strong> to reset the teleport commands at the end of each turn.
+			<li>Modify the <strong>playGame</strong> subroutine to call the new <strong>resetWizards</strong> method (only show the lines either side and the new line).
+			<li>Modify the <strong>setUpDefaultGame</strong> subroutine so that Player One starts with 20 fuel:			
+				<pre>player1.setUpPlayer("Player One", 0, 20, 10, 5);</pre>
+			</li>
+		</ul>
+		
+		Test that the changes you have made work:
+
+		<ol type="a">
+			<li>Choose menu option 1 to run the default game and then enter the following commands:
+
+				<table>
+					<tr><td>Player One</td>
+						<td>
+							<ul class="moves">
+								<li>upgrade wiz 8</li>
+								<li>move 8 13</li>
+								<li>move 13 18</li>
+							</ul>
+						</td>						
+					<tr><td>Player Two</td>
+						<td>
+							<ul class="moves">
+								<li>move 23 19</li>
+								<li>move 19 11</li>
+								<li>upgrade less 11</li>
+							</ul>
+						</td>
+					<tr><td>Player One</td>
+						<td>
+							<ul class="moves">
+								<li>move 18 8</li>
+								<li>move 18 13</li>
+								<li>move 13 8</li>
+							</ul>
+						</td>		
+					</tr>
+				</table>
+			</li>
+			<li>Show a screen copy of entering the commands and the responses from the computer up to the point at which it prints out the Player One current state line.</li>
+		</ol>	
+				
+		<table class="evidencebox">
+			<tr><th>Evidence that you need to provide:</th></tr>
+			<tr>
+				<td>
+					<ol type="a" class="evidence">
+						<li>Your PROGRAM SOURCE CODE for the amended subroutines <strong>playGame</strong> and <strong>checkUpgradeCommandFormat</strong>, the <strong>executeUpgradeCommand</strong> and new method <strong>resetWizards</strong> methods of the <strong>HexGrid</strong> class and the new <strong>WizardPiece</strong> class.</li>						
+						<li>SCREEN CAPTURE(S) showing the required test.</li>
+					</ol>
+				</td>
+			</tr>
+		</table>
+
+		
+		
+		<hr><a name="q14"><h1><strong>Task 14</strong> (max. 10 marks)</sup></h1></a>
+
+		This question refers to the <strong>playGame</strong>, <strong>checkCommandIsValid</strong>, <strong>checkUpgradeCommandFormat</strong> and <strong>setUpDefaultGame</strong> subroutines in the main program, to a new <strong>SCFWPiece</strong> class, to the <strong>Player</strong> class and to the <strong>executeUpgradeCommand</strong>, <strong>executeCommand</strong> and new <strong>executeSupplyCommand</strong> methods in the <strong>HexGrid</strong> class. <br /><br />
+
+		Introduce a new piece, a supply chain factory worker, for the same cost of 5 lumber of any upgrade.  The syntax for the upgrade is “upgrade scfw NUM” where NUM is the location of the Serf to be upgraded. Once created, the piece is displayed as F for Player One and f for Player Two. A new command will be available “supply NUM”, which will take all three of your moves (so it can only be the first command), will cost 5 lumber and 5 fuel and will add 1 to your supply chain; NUM is the location of the factory. The VP value of the factory is 3. The factory cannot be moved once created.
+		
+		<ul>
+			<li>Create the new <strong>SCFWPiece</strong> class.</li>
+			<li>Modify the <strong>checkCommandIsValid</strong> subroutine to validate the supply command.</li>
+			<li>Modify the <strong>checkUpgradeCommandFormat</strong> subroutine so that it can validate the new upgrade command.</li>
+			<li>Modify the private method <strong>executeUpgradeCommand</strong> of the <strong>HexGrid</strong> class to allow the new <strong>SCFWPiece</strong> to be created.</li>
+			<li>Modify the method <strong>executeCommand</strong> of the <strong>HexGrid</strong> class to allow for the supply command to work by calling a new private method, <strong>executeSupplyCommand</strong>.</li>
+			<li>Create the new private method <strong>executeSupplyCommand</strong> in the <strong>HexGrid</strong> class to implement the new supply command.</li>
+			<li>Modify the <strong>playGame</strong> subroutine to only allow the supply command to be the first command of the three and terminate input for the other two commands if received as the first command. Also modify it to call the <strong>addPieceToSupplyChain</strong> method.</li>
+			<li>Create a new <strong>addPieceToSupplyChain</strong> method in the <strong>Player</strong> class that will add 1 piece to the supply chain.</li>
+			<li>Modify the <strong>setUpDefaultGame</strong> subroutine so that Player One starts with 30 of both resources:
+				<pre>player1.setUpPlayer("Player One", 0, 30, 30, 5);</pre>
+			</li>
+		</ul>
+
+		Test that the changes you have made work:
+
+		<ol type="a">
+			<li>Choose menu option 1 to run the default game and then enter the following commands:
+
+				<table>
+					<tr><td>Player One</td>
+						<td>
+							<ul class="moves">
+								<li>move 8 16</li>
+								<li>upgrade scfw 16</li>
+								<li>supply 16</li>
+							</ul>
+						</td>						
+					<tr><td>Player Two</td>
+						<td>
+							<ul class="moves">
+								<li>move 23 19</li>
+								<li>move 19 11</li>
+								<li>upgrade less 11</li>
+							</ul>
+						</td>
+					<tr><td>Player One</td>
+						<td>
+							<ul class="moves">
+								<li>supply 16</li>
+
+							</ul>
+						</td>		
+					</tr>
+				</table>
+			</li>
+			<li>Show a screen copy of entering the commands and all the responses from the computer.</li>
+		</ol>
+
+				
+		<table class="evidencebox">
+			<tr><th>Evidence that you need to provide:</th></tr>
+			<tr>
+				<td>
+					<ol type="a" class="evidence">
+						<li>Your PROGRAM SOURCE CODE for the amended subroutines <strong>playGame</strong>, <strong>checkCommandIsValid</strong> and <strong>checkUpgradeCommandFormat</strong>, the <strong>executeUpgradeCommand</strong>, <strong>executeCommand</strong> and new <strong>executeSupplyCommand</strong> methods of the <strong>HexGrid</strong> class, the new <strong>SCFWPiece</strong> class and the <strong>addPieceToSupplyChain</strong> method in the <strong>Player</strong> class.</li>
+						<li>SCREEN CAPTURE(S) showing the required test.</li>
+					</ol>						
+				</td>
+			</tr>
+		</table>
+
+
+		
+		<hr><a name="q15"><h1><strong>Task 15</strong> (max. 10 marks)</sup></h1></a>
+
+		This question refers to the <strong>displayMainMenu</strong>, <strong>loadGame</strong> and new <strong>createGame</strong> subroutines in the main program.  The question also relies on using the <strong>getGridAsIndices</strong> method from Task 5, including any methods called by that method.  Therefore it is best to begin your solution with the codebase that you ended Task 5 with. <br /><br />
+
+		Introduce a new command to the main menu that will allow a custom game to be created.  The user should be able to enter the grid size as a choice of 6, 8 (the current size) or 10 (and the board will be displayed for them to check – this is just a reuse of the code from Task 5 and hence the final code from Task 5 will be the starting point for this task), the location of a Baron for each player as well as the location of any additional pieces that they wish to add. They should be able to define which hexes contain lumber and peat bogs and define the starting resources (including supply chain) for each player.  There is no need to perform any validation on the data entry except for the grid size (which must be 6, 8 or 10).<br /><br />
+
+		The prompts that should be given in this new subroutine (in order) are:
+
+		<ul>
+			<li>"Please enter the grid size (6, 8 or 10): "</li>
+			<li>"Please enter all the locations of peat bogs separated by commands with no spaces: "</li>
+			<li>"Please enter all the locations of forests separated by commands with no spaces:  </li>
+			<li>"Please enter the location of the Baron for Player 1: "</li>
+			<li>"Please enter the location of the Baron for Player 2:  </li>
+			<li>"Please enter the starting amount of VPs for Player 1: "</li>
+			<li>"Please enter the starting amount of VPs for Player 2:  </li>
+			<li>"Please enter the starting amount of fuel for Player 1: "</li>
+			<li>"Please enter the starting amount of fuel for Player 2: "</li>
+			<li>"Please enter the starting amount of lumber for Player 1: "</li>
+			<li>"Please enter the starting amount of lumber for Player 2: "</li>
+			<li>"Please enter the starting amount of pieces for Player 1: "</li>
+			<li>"Please enter the starting amount of pieces for Player 2: "</li>
+			<li>"Enter piece to add for Player One (S=Serf, L=LESS, P=PBDS) or D for Done: "</li>
+			<li>"Enter piece to add for Player Two (S=Serf, L=LESS, P=PBDS) or D for Done: "</li>
+			<li>"What name would you like to save the file as (please include the extension): "</li>
+			<li>"Would you like to play the game that you've created and saved?</li>
+		</ul>
+
+		If a piece is chosen by either player, the following prompt should be given:
+
+		<ul>
+			<li>"Enter the index of the hex where that piece should be placed: "</li>
+		</ul>
+		
+		The game should automatically save in a file (it should prompt for the name) and then, once saved, the players should have the opportunity to play it immediately if they wish without having to type in the file name. For reference, see the <strong>game1.txt</strong> file supplied with the pre-release code; the format of the file is as follows (it is all comma-separated values):<br /><br />
+
+		<div style="border:1px solid;">
+		<p>Line 1: text for Player One’s name, Player One’s VPs, Player One’s fuel, Player One’s lumber, Player One’s supply chain</p>
+		<p>Line 2: text for Player Two’s name, Player Two’s VPs, Player Two’s fuel, Player Two’s lumber, Player Two’s supply chain</p>
+		<p>Line 3: board size</p>
+		<p>Line 4: terrain list all separated by commas in index order</p>
+		<p>Line 5+: one line for each piece on the board with the format: 1 or 2 to indicate the player number, piece name (case sensitive), index (board location)</p>
+		</div>
+
+		<ul>
+			<li>Modify the <strong>displayMainMenu</strong> subroutine to add option <em>3. Create game</em>.</li>
+			<li>Modify the main program so that it calls a new subroutine <strong>createGame</strong> and then asks the player if they would like to load the game and then loads the game.  You will also need to modify the call <strong>loadGame</strong> so that it accepts the file name as a parameter.</li>
+			<li>Create a new subroutine called <strong>createGame</strong> which will create the file containing the game save and return two values, <strong>success</strong> (as a Boolean) and <strong>fileName</strong> (the text name of the file created).</li>
+			<li>Modify the <strong>loadGame</strong> subroutine to correct the bug as described above.</li>
+		</ul>
+		
+		Test that the changes you have made work:
+
+		<ol type="a">
+			<li>Choose menu option 3 to create a game and then enter the following data at each consecutive prompt:</li>
+				<ul>
+					<li>8</li>
+					<li>24,25,6,7</li>
+					<li>4,5,26,27</li>
+					<li>0</li>
+					<li>31</li>
+					<li>0</li>
+					<li>0</li>
+					<li>12</li>
+					<li>12</li>
+					<li>15</li>
+					<li>15</li>
+					<li>5</li>
+					<li>5</li>					
+					<li>S</li>
+					<li>12</li>
+					<li>D</li>
+					<li>S</li>
+					<li>19</li>
+					<li>D</li>
+					<li>test.csv</li>
+					<li>y</li>
+				</ul>
+			<li>Show a screen copy of entering the commands and the responses from the computer up to the point at which it prints out the Player One current state line.</li>
+		</ol>	
+				
+		<table class="evidencebox">
+			<tr><th>Evidence that you need to provide:</th></tr>
+			<tr>
+				<td>
+					<ol type="a" class="evidence">
+						<li>Your PROGRAM SOURCE CODE for the amended subroutines <strong>loadGame</strong> and <strong>displayMainMenu</strong> and the new subroutine <strong>createGame</strong> in the main program.  Also include any import statements that you added to the main program.</li>						
+						<li>SCREEN CAPTURE(S) showing the required test.</li>
+					</ol>
+				</td>
+			</tr>
+		</table>
+		
+		
+		<h1><strong>Extension Tasks</strong></h1>
+	
+	
+		<div class="textbox" style="margin:0; float:left; display:inline-block; width:auto">			
+			Completed all the tasks above and want to explore the program futher? Have a go at some of these additional challenges!
+		</div>		
+
+		<br style="clear:both;">
+		
+		<ol>
+			<li>Introduce a GOD mode in which resources are infinite for both sides and nobody can die, once exited (using the command "godmode on" or "godmode off") then the game reverts to normal rules and the resources revert to their values before godmode was enabled.</li>
+			<li>Create a computer controlled player</li>
+			<li>Make the game more user-friendly so that each time any commands are processed a full description is give, e.g. 5 lumber deducted for upgrading PBDS in hex 12, or Serf has two connections from hexes 12 & 17 and was destroyed in hex 20.</li>
+			<li>Introduce a new level of upgrade so that pbds and less pieces can be upgraded to super pbds and less pieces for a cost of 10 lumber but will now generate 2 resources for each dig or saw command.</li>
+			<li>Introduce a new rule so that connections from your own pieces don’t kill you.</li>
+			<li>Introduce an assassin piece that can use a kill command once per game but then it reverts to a serf, the kill command will kill the baron if it is next to it.</li>
+			<li>Introduce a poison piece command so that each player can poison one piece per game, if a poisoned piece is killed the victim gains VPs instead of the killer.</li>
+			<li>Introduce a random game command from the main menu where the board is randomly sized and resources are randomised (but fairly with suitable rules for distribution).</li>
+			<li>Introduce a new blocking/wall piece that requires three connections to kill it (or possibly is also invincible for three turns).</li>
+			<li>Change the rules so that the connection check for killing a piece is made after every move, instead of at the end of the turn.</li>
+			<li>Add the ability to modify the terrain (for a cost), or have a new piece with this ability.</li>
+			<li>Introduce ranged units that have connections only two edges away (instead of one).</li>
+			<li>Introduce a mini serf (or pleb) piece that only costs 1 but cannot be upgraded and will be automatically killed if it ends the turn next to an enemy.  It also doesn’t cost you a piece from the supply chain to spawn.</li>
+			<li>Have an advanced game mode whereby there is one trap square randomly on the board and any piece landing in it will be destroyed. Alternatively, give each player the opportunity to plant one trap on any field not adjacent to the opponent’s Baron, once per game.</li>
+			<li>Change the rules so that you can choose to have an immovable Baron but in return get 1 extra lumber and 1 extra fuel every turn.</li>
+			<li>Introduce a game timer so that each player has 180 seconds (or any configurable value using a constant or inputted variable) to enter their moves.  Failure to complete the move in time will result in the player forfeiting the remainder of their moves; whatever they have entered so far will be executed (if possible), after which it will become the other player’s turn.</li>
+			<li>Add hit points for pieces to change the mechanic of when/how pieces are killed.</li>
+			<li>Change the game so that the coordinates system is removed and distances are simply counted by the number of hexes that you need to move through.  The IDs should remain. The challenge here is working out / maintaining which tiles are neighbours.</li>
+			<li>Change the game rules so that the game is terminated immediately if a Baron piece is destroyed. At the moment if Player 1 destroys Player 2’s Baron, they still get to play their turn.</li>
+			<li>Change the victory rules at the end of the game so that once the game ends, each player gains VP for all of their remaining pieces according to the VP value for those pieces.</li>
+		</ol>
+		
+	<!--activity end-->
+		
+
+	<div class="footer">
+	<p class="no_print"><a href="#top">Back to Top</a>
+	<span class="no_print" style="float:right;">&copy; <a href="http://zigzageducation.co.uk">ZigZag Education 2020</a></span></p>
+	</div>
+	
+	<!-- .topic_info end -->		
+	
+<!-- .container end -->
+</div>
+
+</body>
+</html>
+
+

@@ -1,0 +1,254 @@
+<html> 
+<head> 
+	<title>Hex Baron 2021</title>
+	<script> 
+		/* Toggle between adding and removing the "responsive" class to topnav when the user clicks on the icon */
+		function myFunction() {
+			var x = document.getElementById("myTopnav");
+			if (x.className === "nav") {
+				x.className += " responsive";
+			} else {
+				x.className = "nav";
+			}
+		}
+	</script>	
+	<script src="lightbox/js/jquery-1.10.2.min.js"></script>
+	<script src="lightbox/js/lightbox-2.6.min.js"></script>
+	
+	<link href="style.css" rel="stylesheet" />
+	<link href="lightbox/css/lightbox.css" rel="stylesheet" />
+	<link href='http://fonts.googleapis.com/css?family=Comfortaa:400,300,700' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Sintony:400,700' rel='stylesheet' type='text/css'>
+</head>
+
+<body>
+
+<!-- .container start -->
+<div class="container">
+	<!-- .banner start -->
+	<div class="banner">	
+	<img src="images/banner.jpg" style="border:1px solid #000;">
+		<ul id="nav" class="nav" id="myTopnav">		
+		<li><a href="index.html">Introduction</a></li>
+		<li><a href="walkthrough.html">Walkthrough</a></li>
+		<li><a href="diagrams.html">Class Diagram Tasks</a></li>
+		<li><a href="questions.html" class="selected">Theory Questions</a></li>
+		<li><a href="tasks.html">Programming Tasks</a></li>
+		<li><a href="answers.html">Solutions</a></li>	
+		<li class="end">Java Edition</li>		
+	</ul>	
+	</div>
+	<!-- .banner end -->		
+
+	
+	<!-- .topic_header start -->
+	<div class="topic_header">
+	<table style="background-color:#ffff80;"><tr><td><h1><strong>Theory Questions</h1></td></tr></table>
+	
+	</div>
+	<!-- .topic_header end -->
+	
+	<!-- topic_info start -->		
+		
+	<div class="topic_info">
+		
+		<div class="textbox" style="margin:0;">
+			The following questions are provided in PDF here: <a href="files/j03a-TheoryQuestionsWriteOn.pdf">with answer lines</a> | <a href="files/j03b-TheoryQuestions.pdf">without answer lines</a><br />			
+			An <a href="files/PAPER1_EAD.dotx">Electronic Answer Document (EAD)</a> is provided for all questions/tasks. <strong>Save this file to an accessible location before you start.</strong>
+			
+		</div>				
+		
+		<table style="width:100%"><tr><th>The following questions refer to the preliminary material and require you to load the skeleton program, but do not require any additional programming.</th></tr></table>	
+		
+		<table>
+			<tr><td>
+				<ol start ="1">
+					<li><p>This question refers to the <strong>playGame</strong> subroutine in the main program. </p> 
+						<p>The subroutine does not currently print out the actual player names when displaying the status at the start of each turn; it just prints out ‘Player One’ and ‘Player Two’.  </p>
+					</li>
+
+					<ol type="a">
+						<li>How could this be corrected so that it would print out the names using the accessor method to the protected attribute <strong>name</strong> from the <strong>Player</strong> class? 	[1]</li>
+						<li>This is an example of using an accessor method.  Why are accessor methods required in object-oriented programming?	[1]</li>
+					</ol>					
+				</ol>
+			</td></tr>
+			
+
+			<tr><td>
+				<ol start="2">
+					<li><p>This question refers to the <strong>playGame</strong> subroutine in the main program.  </p>
+						<p>In the subroutine, the variable <strong>player1Turn</strong> is set to true to indicate that it is Player One’s turn. How does the game process Player Two’s turn?	[2]</p>
+					</li>
+				</ol>
+			</td></tr>	
+
+
+			<tr><td>
+				<ol start="3">
+					<li><p>This question refers to the <strong>hasMethod</strong> method within the <strong>Piece</strong> class and the <strong>executeCommandInTile</strong> method in the <strong>HexGrid</strong> class. </p>
+						<p>Explain how <strong>hasMethod</strong> is used in the <strong>executeCommandInTile</strong> method.	[2]</p>
+					</li>
+				</ol>
+			</td></tr>	
+
+
+			<tr><td>
+				<ol start="4">
+					<li><p>This question refers to the <strong>getDistanceToTileT</strong> method in the <strong>Tile</strong> class.  </p>
+						<p><strong>getDistanceToTileT</strong> is used to calculate the distance from the current tile to another tile.</p>
+					</li>
+					<ol type="a">					
+						<li>Explain how this calculation is performed. 	[3]</li>
+						<li>Give a worked example of this calculation if the current tile has coordinates (2,-3,0) and the destination tile has coordinates (4,-4,0).  All coordinates are given in (x,y,z) form.</li>
+					</ol>
+				</ol>
+			</td></tr>				
+			
+
+			<tr><td>
+				<ol start ="5">
+					<li><p>The <strong>BaronPiece</strong>, <strong>LESSPiece</strong> and <strong>PBDSPiece</strong> classes all inherit from the <strong>Piece</strong> class.</p> </li>
+					<ol type="a">
+						<li>Explain what is meant by 'inheritance'. 	[1]</li>
+						<li>Why isn’t there a 'SerfPiece' class? [1]</li>
+					</ol>					
+				</ol>
+			</td></tr>			
+			
+
+			<tr><td>
+				<ol start="6">
+					<li><p>This question refers to the <strong>BaronPiece</strong> class and the <strong>Piece</strong> class.</p>
+						<p>The <strong>BaronPiece</strong> class overrides the public method <strong>checkMoveIsValid</strong> from its parent.</p>						
+					</li>
+					<ol type="a">					
+						<li>Explain what is meant by 'overriding'.	[2]</li>
+						<li>Explain why the method was overridden in this case.	[2]</li>
+					</ol>
+				</ol>
+			</td></tr>	
+			
+
+			<tr><td>
+				<ol start ="7">
+					<li><p>Big-O notation is used to measure the time complexity of algorithms.</p> </li>
+					<ol type="a">
+						<li>Examine the <strong>setUpNeighbours</strong> method in the <strong>HexGrid</strong> class.  State its time complexity.	[1]</li>
+						<li>Which other method is used as a measure of the complexity of algorithms?	[1]</li>
+					</ol>					
+				</ol>
+			</td></tr>			
+			
+
+			<tr><td>
+				<ol start="8">
+					<li><p>The skeleton program uses a Comma Separated Values (CSV) file as the data structure for a saved game.</p>
+						<p>Explain why a CSV file is suitable for cross-platform applications.	[1]</li>
+				</ol>
+			</td></tr>	
+			
+
+			<tr><td>
+				<ol start="9">
+					<li><p>Class diagrams can be represented using Unified Modeling Language (UML).</p>
+						<p>Add the missing class names and relationships to the diagram below:	[4]</p> 					
+						<img src="images/q9-class-diagram.png" style="border:none; margin-top:10px;"></li>									
+				</ol>
+			</td></tr>
+			
+
+			<tr><td>
+				<ol start ="10">
+					<li><p>This question refers to the <strong>executeUpgradeCommand</strong> method of the <strong>HexGrid</strong> class.</p> </li>
+					<ol type="a">
+						<li>What does a return value of -1 from this method mean?	[1]</li>
+						<li>What does a return value of 5 from this method mean?	[1]</li>
+					</ol>					
+				</ol>
+			</td></tr>			
+
+			
+			<tr><td>
+				<ol start="11">
+					<li><p>This question refers to the <strong>dig</strong> method of the <strong>PBDSPiece</strong> class and the <strong>executeCommandInTile</strong> method of the <strong>HexGrid</strong> class.  </p>
+						<p>When a ‘dig’ command is issued by a player, it is possible that the tile will be changed from a peat bog to a field and that they will receive 5 fuel instead of the normal 1.  </p>
+						<p>Explain how this eventuality is processed in the code with specific references to the variables used, function calls made and return values. 	[4]</p>
+					</li>  
+				</ol>
+			</td></tr>	
+
+			
+			<tr><td>
+				<ol start ="12">
+					<li><p>This question refers to the <strong>destroyPiecesAndCountVPs</strong> method of the <strong>HexGrid</strong> class and to the <strong>Piece</strong> class. </p>
+						<p>For a piece to be destroyed in the game, it needs to have two connections to immediate neighbours (i.e. pieces in two of the tiles that share a side with it). </p> </li>
+					<ol type="a">
+						<li>Explain how the <strong>destroyPiecesAndCountVPs</strong> method uses polymorphism to access the protected attribute <strong>connectionsToDestroy</strong> of the <strong>Piece</strong> class.	[2]</li>
+						<li>Why is polymorphism not possible for private attributes?	[1]</li>
+					</ol>					
+				</ol>
+			</td></tr>	
+
+			
+			<tr><td>
+				<ol start="13">
+					<li><p>This question refers to the <strong>checkUpgradeCommandFormat</strong> subroutine in the main program.  </p>
+						<p>Currently the validation performed by this subroutine could be represented using the following FSM (note that the 0 or higher condition is not currently checked in the code but needs to be part of the answer).</p>
+						
+						<img src="images/q13-fsm.png" style="border:none; margin-top:10px;">		
+
+						<p>Where <integer> is any valid (0 or higher) integer.</p>
+					</li>						
+						
+					<ol type="a">
+						<li>Write down the regular expression that is the equivalent of this FSM.	[3]</li>
+						<li>Improve your regular expression so that it only accepts integers from 0 to 99.	[1]</li>
+						<li>What is the definition of a regular language?	[1]</li>
+					</ol>				
+				</ol>
+			</td></tr>	
+
+			
+			<tr><td>
+				<ol start="14">
+					<li><p>This question refers to the <strong>getGridAsString</strong> method of the <strong>HexGrid</strong> class.</p>						
+					</li>						
+						
+					<ol type="a">
+						<li>State the identifier for a local variable used in this method.	[1]</li>
+						<li>What are the advantages of using local variables?	[3]</li>
+						<li>This method uses one private and two protected attributes. What is the difference between a private and a protected attribute?	[2]</li>
+					</ol>				
+				</ol>
+			</td></tr>	
+			
+			<tr><td>
+				<ol start="15">
+					<li><p>This question refers to the <strong>executeSpawnCommand</strong> method of the <strong>HexGrid</strong> class.  </p>
+						<p>Explain how the method works, including reference to how it meets the success condition for spawning a new Serf (it must be on an empty square adjacent to that player’s Baron).	[6]</p></li>
+				</ol>
+			</td></tr>	
+			
+			
+		</table>
+	
+		
+	<!--activity end-->
+		
+
+	<div class="footer">
+	<p class="no_print"><a href="#top">Back to Top</a>
+	<span class="no_print" style="float:right;">&copy; <a href="http://zigzageducation.co.uk">ZigZag Education 2020</a></span></p>
+	</div>
+	
+	<!-- .topic_info end -->		
+	
+<!-- .container end -->
+</div>
+
+</body>
+</html>
+
+
