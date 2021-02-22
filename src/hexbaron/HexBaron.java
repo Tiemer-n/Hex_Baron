@@ -20,6 +20,11 @@ public class HexBaron {
     public static HexGrid indexgrid;
   
     public HexBaron() {
+        
+        //Calls displayMainMenu and processes the result to either quit, load a game by
+        //calling loadGame or play the default game by calling setUpDefaultGame and then calling 
+        //playGame to play the game.
+        
         boolean fileLoaded;
         Player player1 = new Player();
         Player player2 = new Player();
@@ -47,6 +52,12 @@ public class HexBaron {
     }
 
     Object[] loadGame(Player player1, Player player2) {
+        
+        //Asks for the name of a .csv text file in the format documented by AQA which will load a 
+        //saved game into memory and then allow it to be played by setting the Player objects and returning 
+        //the HexGrid object, which can be passed into playGame.
+        
+        
         Console.write("Enter the name of the file to load: ");
         String fileName = Console.readLine();
         List<String> items;
@@ -94,6 +105,9 @@ public class HexBaron {
     }
     
     HexGrid setUpDefaultGame(Player player1, Player player2) {
+        
+        //Initialises the game with the default values and board size as determined by AQA.
+        
         List<String> t = Arrays.asList(new String[]{" ", " ", "#", " ", "~", "~", " ", " ", " ", "~", " ", "#", "#", " ", " ", " ",
             " ", " ", "#", "#", "#", "#", "~", "~", "~", "~", "~", " ", "#", " ", "~", " "});
         int gridSize = 8;
@@ -109,6 +123,11 @@ public class HexBaron {
     }
 
     boolean checkMoveCommandFormat(List<String> items) {
+        //Returns true if the following conditions are met:
+        //1) There are three elements in the items list
+        //2) The second and third items are strings containing integers
+        //Otherwise it returns false.
+        
         int result;
         if (items.size() == 3) {
             for (int count = 1; count <= 2; count++) {
@@ -124,6 +143,14 @@ public class HexBaron {
     }
 
     boolean checkStandardCommandFormat(List<String> items) {
+//        Returns true if the following conditions are met:
+//
+//        1) There are two elements in the items list
+//
+//        2) The second item is a string containing an integer
+//
+//        Otherwise it returns false.
+        
         int result;
         if (items.size() == 2) {
             try {
@@ -137,6 +164,17 @@ public class HexBaron {
     }
 
     boolean checkUpgradeCommandFormat(List<String> items) {
+        
+//        Returns true if the following conditions are met:
+//
+//        1) There are three elements in the items list
+//
+//        2) The third item is a string containing an integer
+//
+//        3) The second item is either less or pbds (any case)
+//
+//        Otherwise it returns false.
+        
         int result;
         if (items.size() == 3) {
             if (!items.get(1).toUpperCase().equals("LESS") && !items.get(1).toUpperCase().equals("PBDS")) {
@@ -174,6 +212,8 @@ public class HexBaron {
         return true;
     }
     boolean checkCommandIsValid(List<String> items) {
+        //depending on the first string in the list items, this called one of the other check
+        //commandformat subrountines
         if (items.size() > 0) {
             switch (items.get(0)) {
                 case "move":
@@ -197,6 +237,22 @@ public class HexBaron {
     }
 
     void playGame(Player player1, Player player2, HexGrid grid) {
+        
+//        This alternates between Player 1 and Player 2 and always ensures that Player 2 has an equal 
+//        number of turns even if Player 1 has just killed their Baron.
+//
+//        For each player’s turn, the board is printed out and then three commands are read in and validated 
+//        (by calling checkCommandIsValid) and then executed (by calling executeCommand on the HexGrid object for the game – stored in the variable grid).
+//
+//        After each command, the updateLumber, updateFuel and removeTileFromSupply (if necessary) methods are 
+//        called on the Player object for that player’s turn.
+//
+//        Once the commands have been executed, pieces are destroyed, VPs are assigned and a check is made to see whether 
+//        the game is over. Before the game moves on to the next player’s turn, the status of both players (resources and VPs) is displayed.
+//
+//        If the game is over and Player 2 has played, then displayEndMessages is called to display the final scores and the winner.
+
+
         boolean gameOver = false;
         boolean player1Turn = true;
         boolean validCommand;
@@ -286,6 +342,15 @@ public class HexBaron {
     }
 
     void displayEndMessages(Player player1, Player player2) {
+        
+//        Displays the following for both players:
+//
+//        1) Their remaining resources
+//
+//        2) Their VPs
+//
+//        Then, displays the winner.
+        
         Console.writeLine();
         Console.writeLine(player1.getName() + " final state: " + player1.getStateString());
         Console.writeLine();
@@ -299,6 +364,9 @@ public class HexBaron {
     }
 
     void displayMainMenu() {
+        
+        //prints out the main menu
+        
         Console.writeLine("1. Default game");
         Console.writeLine("2. Load game");
         Console.writeLine("3. Instructions");

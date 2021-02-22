@@ -24,6 +24,10 @@ class PBDSPiece extends Piece {
 
     @Override
     public int checkMoveIsValid(int distanceBetweenTiles, String startTerrain, String endTerrain) {
+        
+        //If the value of the parameter distanceBetweenTiles is 1 and startTerrain is not a peat bog 
+        //then it returns the value of the protected attribute fuelCostOfMove otherwise it returns -1.
+        
         if (distanceBetweenTiles != 1 || startTerrain.equals("~")) {
             return -1;
         }
@@ -31,6 +35,9 @@ class PBDSPiece extends Piece {
     }
 
     public int dig(String terrain) {
+        
+        //If terrain is a peat bog then it has a 90% chance of returning 1 and a 10% chance of returning 5, otherwise it returns 0.
+        
         if (!terrain.equals("~")) {
             return 0;
         }

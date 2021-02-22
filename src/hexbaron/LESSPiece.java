@@ -19,6 +19,11 @@ class LESSPiece extends Piece {
 
     @Override
     public int checkMoveIsValid(int distanceBetweenTiles, String startTerrain, String endTerrain) {
+        
+        //If the value of the parameter distanceBetweenTiles is 1 and startTerrain is not a forest 
+        //then if the move begins or ends in a peat bog it returns fuelCostOfMove x2 and if the move 
+        //doesn’t begin or end in a peat bog then it returns fuelCostOfMove otherwise it returns -1.
+        
         if (distanceBetweenTiles == 1 && !startTerrain.equals("#")) {
             if (startTerrain.equals("~") || endTerrain.equals("~")) {
                 return fuelCostOfMove * 2;

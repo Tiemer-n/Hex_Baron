@@ -33,6 +33,11 @@ class Piece {
     }
 
     public int checkMoveIsValid(int distanceBetweenTiles, String startTerrain, String endTerrain) {
+        
+        //If the value of the parameter distanceBetweenTiles is 1 then if the move begins 
+        //or ends in a peat bog it returns fuelCostOfMove ×2 and if the move doesn’t begin or 
+        //end in a peat bog then it returns fuelCostOfMove otherwise it returns -1.
+        
         if (distanceBetweenTiles == 1) {
             if (startTerrain.equals("~") || endTerrain.equals("~")) {
                 return fuelCostOfMove * 2;
@@ -53,10 +58,16 @@ class Piece {
     }
 
     public int getConnectionsNeededToDestroy() {
+        
+        
         return connectionsToDestroy;
     }
 
     public String getPieceType() {
+        
+        //If the attribute belongsToPlayer1 is true then it returns the value of the
+        //attribute pieceType otherwise it returns the lower case value.
+        
         if (belongsToplayer1) {
             return pieceType;
         } else {
@@ -65,6 +76,9 @@ class Piece {
     }
 
     public void destroyPiece() {
+        
+        //Sets the value of the protected attribute destroyed to true.
+        
         destroyed = true;
     }
 }
