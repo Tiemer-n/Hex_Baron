@@ -259,8 +259,6 @@ public class HexGrid {
                 }
             }
         }
-        System.out.println(countp1);
-        System.out.println(countp2);
 
         if ((player1Turn && countp1 == 6) || (!player1Turn && countp2 == 6)) {
             System.out.println("Spawn attempted to acceed max pieces ");
@@ -405,7 +403,24 @@ public class HexGrid {
         }
         return new Object[]{baronDestroyed, player1VPs, player2VPs};
     }
+    
+    private void movePiece(int newIndex, int oldIndex) {
+            tiles.get(newIndex).setPiece(tiles.get(oldIndex).getPieceInTile());
+            tiles.get(oldIndex).setPiece(null);
+        }
 
+    public String getPieceTypeInTile(int id) {
+
+        //If there is no piece in the tile specified by id then this returns “ ” 
+        //(string with a single space), otherwise it returns the result of the getPieceType method which is called on the piece in the tile.
+
+        Piece thePiece = tiles.get(id).getPieceInTile();
+        if (thePiece == null) {
+            return " ";
+        } else {
+            return thePiece.getPieceType();
+        }
+    }
     public String getGridAsString(boolean P1Turn) {
         
         //Uses the private attribute listPositionOfTile to loop through the tiles in the grid 
@@ -432,24 +447,6 @@ public class HexGrid {
             listPositionOfTile = (int) returnObjects[1];
         }
         return gridAsString + createBottomLine();
-    }
-
-    private void movePiece(int newIndex, int oldIndex) {
-        tiles.get(newIndex).setPiece(tiles.get(oldIndex).getPieceInTile());
-        tiles.get(oldIndex).setPiece(null);
-    }
-
-    public String getPieceTypeInTile(int id) {
-        
-        //If there is no piece in the tile specified by id then this returns “ ” 
-        //(string with a single space), otherwise it returns the result of the getPieceType method which is called on the piece in the tile.
-        
-        Piece thePiece = tiles.get(id).getPieceInTile();
-        if (thePiece == null) {
-            return " ";
-        } else {
-            return thePiece.getPieceType();
-        }
     }
 
     private String createBottomLine() {
@@ -503,4 +500,130 @@ public class HexGrid {
         }
         return new Object[]{line, listPositionOfTile};
     }
+    
+    
+    //task 5 printing the grid with the indexes showing where you can move to -------------------------
+    
+    int gridIndex = 0;
+    
+    public String getGridAsIndicies(){
+        
+        
+        int listPositionOfTile = 0;
+        Object[] returnObjects = createEvenLineHex(true, listPositionOfTile);
+        String gridAsString = createTopLine() + returnObjects[0].toString();
+        listPositionOfTile = (int) returnObjects[1];
+        listPositionOfTile += 1;
+        returnObjects = createOddLineHex(listPositionOfTile);
+        gridAsString += returnObjects[0].toString();
+        listPositionOfTile = (int) returnObjects[1];
+        for (int count = 1; count < size -1; count +=2) {
+            listPositionOfTile += 1;
+            returnObjects = createEvenLineHex(false, listPositionOfTile);
+            gridAsString += returnObjects[0].toString();
+            listPositionOfTile = (int) returnObjects[1];
+            listPositionOfTile ++;
+            returnObjects = createOddLineHex(listPositionOfTile);
+            gridAsString += returnObjects[0].toString();
+            listPositionOfTile = (int) returnObjects[1];
+        }
+        gridIndex = 0;
+        return gridAsString + createBottomLine();
+        
+        
+        
+        
+    }
+    
+    private Object[] createEvenLineHex(boolean firstEvenLine, int listPositionOfTile) {
+        String line = " /" + gridIndex;
+        gridIndex++;
+        for (int count = 1; count < size / 2; count++) {
+            
+            String add = "";
+            if(!gridIndexTooBig()){
+                add = " ";
+            }
+            
+            line += add;
+            listPositionOfTile += 1;
+            line += "\\__/" + gridIndex;gridIndex++;
+        }
+        if (firstEvenLine) {
+            
+            String add = "";
+            if(!gridIndexTooBig()){
+                add = " ";
+            }
+            
+            line += add + "\\__\n";
+        } else {
+            
+            
+            String add = "";
+            if(!gridIndexTooBig()){
+                add = " ";
+            }
+            
+            line += add + "\\__/\n";
+        }
+        return new Object[]{line, listPositionOfTile};
+    }
+    
+    private Object[] createOddLineHex(int listPositionOfTile) {
+        String line = "";
+        
+        for (int count = 1; count <= size / 2; count++) {
+            if (count > 1 && count < size / 2) {
+                
+                String add = "";
+                if(!gridIndexTooBig()){
+                    add = " ";
+                }
+                
+                line += add + "\\__/";
+                
+                
+                
+                
+                listPositionOfTile += 1;
+                line += gridIndex;gridIndex++;
+            } else if (count == 1) {
+                line += " \\__/" + gridIndex;gridIndex++;
+            }
+        }
+        
+        String add = "";
+        if(!gridIndexTooBig()){
+            add = " ";
+        }
+        
+        line += add + "\\__/";
+        
+        listPositionOfTile += 1;
+        if (listPositionOfTile < tiles.size()) {
+            
+            add = "";
+            if(!gridIndexTooBig()){
+                add = " ";
+            }
+            
+            line += gridIndex + add + "\\\n";
+            gridIndex++;
+        } else {
+            line += "\\\n";
+        }
+        return new Object[]{line, listPositionOfTile};
+    }
+    
+    
+    private boolean gridIndexTooBig (){
+        
+        if(gridIndex > 10){
+            return true;
+        }
+        return false;
+        
+    }
+    
 }

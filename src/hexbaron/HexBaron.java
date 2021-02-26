@@ -291,7 +291,19 @@ public class HexBaron {
             }
             for (int count = 1; count <= 3; count++) {
                 Console.write("Enter command number "+count+": ");
-                commands.add(strip(Console.readLine().toLowerCase()));
+                
+                //task 5 implementing the hexes commands giving the player an index grid
+
+                String stringCommand = Console.readLine();
+                strip(stringCommand);
+                if(stringCommand.equals("hexes")){   
+                    System.out.println(grid.getGridAsIndicies());
+                    count--;
+                }else{
+                    commands.add(strip(stringCommand.toLowerCase()));
+                }
+                
+                //--------------------------------------------------------------
             }
             for (String c : commands) {
                 List<String> items = Arrays.asList(c.split(" "));
@@ -441,18 +453,7 @@ public class HexBaron {
         System.out.println("dig [tile with PBDS piece in it] e.g. [dig 11] will make piece at tile 11 give one fule as long as its a pbds and its in a peat bog (~)"+"\n");
         System.out.println("spawn [tile where it will spawn] e.g. [spawn 1 8] will make the baron spawn a serf in tile 8 ");
         System.out.println("(only barons can spawn pieces onto the board)"+"\n");
-        
-        System.out.println("(index grid)");
-        System.out.println("  __    __    __    __    \n" +
-                        " /0 \\__/1 \\__/2 \\__/3 \\__\n" +
-                        " \\__/4 \\__/5 \\__/6 \\__/7 \\\n" +
-                        " /8 \\__/9 \\__/10\\__/11\\__/\n" +
-                        " \\__/12\\__/13\\__/14\\__/15\\\n" +
-                        " /16\\__/17\\__/18\\__/19\\__/\n" +
-                        " \\__/20\\__/21\\__/22\\__/23\\\n" +
-                        " /24\\__/25\\__/26\\__/27\\__/\n" +
-                        " \\__/28\\__/29\\__/30\\__/31\\\n" +
-                        "    \\__/  \\__/  \\__/  \\__/ ");
+     
         
         
     }
