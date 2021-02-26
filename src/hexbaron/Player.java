@@ -64,4 +64,8 @@ public class Player {
     public void removeTileFromSupply() {
         piecesInSupply -= 1;
     }
+    
+    public void addTileToSupply(int num){ //task 3 adding a piece to the supply
+        piecesInSupply += num;
+    }
 }

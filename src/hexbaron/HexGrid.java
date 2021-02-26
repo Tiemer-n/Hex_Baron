@@ -213,14 +213,15 @@ public class HexGrid {
         movePiece(endID, startID);
         return fuelCost;
     }
-
-    public int executeSpawnCommand(List<String> items, int lumberAvailable, int piecesInSupply) {
-        
-        //Checks to see whether the player has at least 1 pieceInSupply and 3 lumber and that the tile specified 
+//Checks to see whether the player has at least 1 pieceInSupply and 3 lumber and that the tile specified 
         //as the second string in the items list is empty, otherwise it returns -1.
 
         //The method then checks to see that the player’s own Baron is a neighbour and then spawns a new Serf in the tile,
         //appends it to the attribute pieces and returns 3, otherwise it returns -1.
+    
+    
+    private int executeSpawnCommand(List<String> items, int lumberAvailable, int piecesInSupply) {
+        
         
         int tileToUse = Integer.parseInt(items.get(1));
         if (piecesInSupply < 1 || lumberAvailable < 3 || !checkTileIndexIsValid(tileToUse)) {
@@ -241,17 +242,39 @@ public class HexGrid {
                 }
             }
         }
+
+        //Task 4 making sure the player can only have 6 pieces on the board at a time
+        int countp1 = 0;
+        int countp2 = 0;
+        
+        
+        for (int i = 0; i < pieces.size(); i++) {
+
+            Piece PieceTest = pieces.get(i);
+            if (PieceTest != null) {
+                if (PieceTest.belongsToplayer1) {
+                    countp1++;
+                } else if (!PieceTest.belongsToplayer1) {
+                    countp2++;
+                }
+            }
+        }
+        System.out.println(countp1);
+        System.out.println(countp2);
+
+        if ((player1Turn && countp1 == 6) || (!player1Turn && countp2 == 6)) {
+            System.out.println("Spawn attempted to acceed max pieces ");
+
+            return -1;
+        }
+
         if (!ownBaronIsNeighbour) {
             return -1;
         }
         Piece newPiece = new Piece(player1Turn);
-        
-     
-     
-        //me attempting to actually have the piece spawn onto the grid
-        
-        addPiece(player1Turn, "Serf", tileToUse);
-        
+        pieces.add(newPiece);
+
+        tiles.get(tileToUse).setPiece(newPiece);
         return 3;
     }
 
@@ -331,7 +354,7 @@ public class HexGrid {
         }
     }
 
-    public Object[] destroyPiecesAndCountVPs(int player1VPs, int player2VPs) {
+    public Object[] destroyPiecesAndCountVPs(int player1VPs, int player2VPs, Player player1, Player player2) {
         
 //      Loops through every tile in the grid and checks for any pieces that need to be destroyed 
 //      by counting the number of connections for each piece and comparing it to the number of connections needed to destroy the piece in question.
@@ -356,17 +379,22 @@ public class HexGrid {
                     }else if (n.getPieceInTile() != null &&  !n.pieceInTile.belongsToplayer1 && t.pieceInTile.belongsToplayer1){
                         noOfConnections ++;
                     }
+                    
+                    //---------------------------------------------------------------------------
                 }
                 Piece thePiece = t.getPieceInTile();
                 if (noOfConnections >= thePiece.getConnectionsNeededToDestroy()) {
                     thePiece.destroyPiece();
+                    
                     if (thePiece.getPieceType().toUpperCase().equals("B")) {
                         baronDestroyed = true;
                     }
                     listOfTilesContainingDestroyedPieces.add(t);
                     if (thePiece.getBelongsToplayer1()) {
+                        player1.addTileToSupply(1);
                         player2VPs += thePiece.getVPs();
                     } else {
+                        player2.addTileToSupply(1);
                         player1VPs += thePiece.getVPs();
                     }
                 }

@@ -112,11 +112,30 @@ public class HexBaron {
             " ", " ", "#", "#", "#", "#", "~", "~", "~", "~", "~", " ", "#", " ", "~", " "});
         int gridSize = 8;
         HexGrid grid = new HexGrid(gridSize);
-        player1.setUpPlayer("Player One", 0, 10, 10, 5);
-        player2.setUpPlayer("Player Two", 0, 10, 10, 5);
+        
+        //task 2 making it so that you input your own names for player 1 and 2
+        
+        System.out.println("please enter player 1's name: ");
+        String player1name = Console.readLine();
+        System.out.println("please enter player 2's name: ");
+        String player2name = Console.readLine();
+        
+        
+        player1.setUpPlayer(player1name, 0, 10, 10, 5);
+        player2.setUpPlayer(player2name, 0, 10, 10, 5);
+        
+        // ---------------------------------------------------
+        
+        System.out.println("seofijsefoijsdroioasidjf");
+        
+        
         grid.setUpGridTerrain(t);
         grid.addPiece(true, "Baron", 0);
         grid.addPiece(true, "Serf", 8);
+        grid.addPiece(true, "Serf", 24);
+        grid.addPiece(true, "Serf", 5);
+        grid.addPiece(true, "Serf", 2);
+        grid.addPiece(true, "Serf", 3);
         grid.addPiece(false, "Baron", 31);
         grid.addPiece(false, "Serf", 23);
         return grid;
@@ -272,7 +291,7 @@ public class HexBaron {
             }
             for (int count = 1; count <= 3; count++) {
                 Console.write("Enter command number "+count+": ");
-                commands.add(Console.readLine().toLowerCase());
+                commands.add(strip(Console.readLine().toLowerCase()));
             }
             for (String c : commands) {
                 List<String> items = Arrays.asList(c.split(" "));
@@ -322,9 +341,9 @@ public class HexBaron {
             int player2VPsGained = 0;
             Object[] returnObjects;
             if (gameOver) {
-                returnObjects = grid.destroyPiecesAndCountVPs(player1VPsGained, player2VPsGained);
+                returnObjects = grid.destroyPiecesAndCountVPs(player1VPsGained, player2VPsGained, player1 , player2);
             } else {
-                returnObjects = grid.destroyPiecesAndCountVPs(player1VPsGained, player2VPsGained);
+                returnObjects = grid.destroyPiecesAndCountVPs(player1VPsGained, player2VPsGained, player1 , player2);
                 gameOver = (boolean) returnObjects[0];
             }
             player1VPsGained = (int) returnObjects[1];
@@ -341,6 +360,17 @@ public class HexBaron {
         displayEndMessages(player1, player2);
     }
 
+    public String strip (String command){
+        
+        //task 1 i think i chessed this one oops
+        //getting rid of all of the spaces before and after the command
+        
+        String newS = command.trim();
+        
+        
+        return newS;
+    }    
+    
     void displayEndMessages(Player player1, Player player2) {
         
 //        Displays the following for both players:
