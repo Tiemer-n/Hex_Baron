@@ -15,6 +15,7 @@ class BaronPiece extends Piece {
         super(player1);
         pieceType = "B";
         vPValue = 10;
+        connectionsToDestroy = 3;
     }
 
     @Override

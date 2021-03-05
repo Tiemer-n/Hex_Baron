@@ -109,7 +109,7 @@ public class HexBaron {
         //Initialises the game with the default values and board size as determined by AQA.
         
         List<String> t = Arrays.asList(new String[]{" ", " ", "#", " ", "~", "~", " ", " ", " ", "~", " ", "#", "#", " ", " ", " ",
-            " ", " ", "#", "#", "#", "#", "~", "~", "~", "~", "~", " ", "#", " ", "~", " "});
+            " ", " ", "#", "#", "#", "#", "~", "~", "~", "~", "~", " ", "#", " ", "#", " "});
         int gridSize = 8;
         HexGrid grid = new HexGrid(gridSize);
         
@@ -128,16 +128,24 @@ public class HexBaron {
         
         System.out.println("seofijsefoijsdroioasidjf");
         
-        
         grid.setUpGridTerrain(t);
+        
+        //normal grid set up:
+        
+//        grid.addPiece(true, "Baron", 0);
+//        grid.addPiece(true, "Serf", 8);
+//        grid.addPiece(false, "Baron", 31);
+//        grid.addPiece(false, "Serf", 23);
+        
+
         grid.addPiece(true, "Baron", 0);
-        grid.addPiece(true, "Serf", 8);
-        grid.addPiece(true, "Serf", 24);
-        grid.addPiece(true, "Serf", 5);
-        grid.addPiece(true, "Serf", 2);
-        grid.addPiece(true, "Serf", 3);
-        grid.addPiece(false, "Baron", 31);
-        grid.addPiece(false, "Serf", 23);
+        grid.addPiece(true, "Serf", 15);
+        grid.addPiece(true, "Serf", 27);
+        grid.addPiece(true, "Serf", 25);
+        grid.addPiece(false, "Baron", 19);
+        grid.addPiece(false, "Serf", 8);
+        grid.addPiece(false, "Serf", 2);
+       
         return grid;
     }
 
@@ -230,6 +238,25 @@ public class HexBaron {
         
         return true;
     }
+    
+    //task 8 
+    
+    boolean checkDowngradeCommandFormat (List<String> items){
+        
+        if(items.size() == 2){
+            
+            try {
+                int result = Integer.parseInt(items.get(1));
+                return true;
+            } catch (Exception e) {
+                return false;
+            }    
+        }
+        
+        return false;
+    }
+    
+    //888888888888888888888888888888888888888888888888888888888888888
     boolean checkCommandIsValid(List<String> items) {
         //depending on the first string in the list items, this called one of the other check
         //commandformat subrountines
@@ -250,6 +277,11 @@ public class HexBaron {
                 case "upgrade":
                     
                     return checkUpgradeCommandFormat(items);
+                    
+                //task 8 making downgrade command
+                case "downgrade":
+                    return checkDowngradeCommandFormat(items);
+                //88888888888888888888888888888888888888888888888888
             }
         }
         return false;
@@ -305,9 +337,36 @@ public class HexBaron {
                 
                 //--------------------------------------------------------------
             }
+            
+            //task 6 checking if all the commands are move commands and adding +1 fuel to the user if they are 
+            
+            boolean addFuel = true;
+            for (int i = 0; i < 3; i++) {
+                if(!commands.get(i).contains("move")){
+                    addFuel = false;
+                }
+            }
+            
+            if(player1Turn && addFuel){
+                player1.updateFuel(1);
+            }else if(!player1Turn && addFuel){
+                player2.updateFuel(1);
+            }
+            
+            //6666666666666666666666666666666666666666666666666666666666666666666666666
+
+            
+            int countConsecutive = 0;
+            
             for (String c : commands) {
                 List<String> items = Arrays.asList(c.split(" "));
                 validCommand = checkCommandIsValid(items);
+                
+
+               
+                
+                
+                
                 if (!validCommand) {
                     Console.writeLine("Invalid command");
                 } else {
@@ -344,9 +403,64 @@ public class HexBaron {
                             player2.removeTileFromSupply();
                         }
                     }
+                    
+                    
+                    
                     Console.writeLine(summaryOfResult);
                 }
             }
+            
+            //task 7 checking that 3 saw or dig commands were inputted 
+            
+            int valid = 0;
+            for (String c : commands) {
+                List<String> items = Arrays.asList(c.split(" "));
+                validCommand = checkCommandIsValid(items);
+                
+                if(validCommand){
+                    valid ++;
+                }
+                
+                if(valid == 3){
+                   boolean Consecutive = false;
+
+                    if (commands.get(0).equals(commands.get(1)) && commands.get(0).equals(commands.get(2) )) {
+                        Consecutive = true;
+                    }
+
+                    if(Consecutive){
+
+                        
+                        if (player1Turn && commands.get(0).contains("dig")) {
+                            player1.updateFuel(2);
+                            grid.makeField(items);
+                        } else if (!player1Turn && commands.get(0).contains("dig")) {
+                            player2.updateFuel(2);
+                                  grid.makeField(items);
+                        } else if (player1Turn && commands.get(0).contains("saw")) {
+                            player1.updateLumber(2);
+                                  grid.makeField(items);
+                        } else if (!player1Turn && commands.get(0).contains("saw")) {
+                            player2.updateLumber(2);
+                                  grid.makeField(items);
+                        }
+                        
+                        
+                        
+                        
+                    }  
+                }
+            }
+            
+            
+            
+            
+           
+            //77777777777777777777777777777777777777777777777777777777777777777777777
+            
+            
+            
+            
             commands.clear();
             player1Turn = !player1Turn;
             int player1VPsGained = 0;

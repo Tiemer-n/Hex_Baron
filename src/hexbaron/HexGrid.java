@@ -115,6 +115,17 @@ public class HexGrid {
                 }
                 lumberChange = -lumberCost;
                 break;
+                
+            //task 8 
+            case "downgrade":    
+                lumberCost = executeDowngradeCommand(items, lumberAvailable);
+                if(lumberCost < 0){
+                    return new Object[]{"Downgrade not possible", fuelChange, lumberChange, supplyChange};
+                }
+                lumberChange = lumberCost;
+                break;
+                
+            //8888888888888888888888888888888888888888888888888888888
         }
         return new Object[]{"Command executed", fuelChange, lumberChange, supplyChange};
     }
@@ -140,6 +151,41 @@ public class HexGrid {
         }
         return false;
     }
+    
+    //task 8 making a new command 'downgrade'
+    
+    private int executeDowngradeCommand(List<String> items, int lumberAvailable){
+        
+        int tileToUse = 0;
+        
+        try{
+            tileToUse = Integer.parseInt(items.get(1));
+        }catch (Exception e){
+            return -1;
+        }
+        
+        if (!checkPieceAndTileAreValid(tileToUse) || lumberAvailable < 1 
+                || (tiles.get(tileToUse).getPieceInTile().pieceType.equals("S"))) {
+            return -1;
+        }else{
+            Piece thePiece = tiles.get(tileToUse).getPieceInTile();
+            
+            if (!thePiece.getPieceType().toUpperCase().equals("P") && 
+                    !thePiece.getPieceType().toUpperCase().equals("L")) {
+                return -1;
+            }
+            
+            thePiece.destroyPiece();
+            thePiece = new Piece(player1Turn);
+            pieces.add(thePiece);
+            tiles.get(tileToUse).setPiece(thePiece);
+            return 1;
+            
+        }
+    }
+    
+    //888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888
+    
 
     private Object[] executeCommandInTile(List<String> items, int fuel, int lumber) {
         
@@ -153,12 +199,15 @@ public class HexGrid {
         //The method then returns true and the fuel or lumber gained from digging or sawing or it returns false and 0,0 
         //if the command could not be executed.
         
+        
         int tileToUse = 0;
         try{
             tileToUse = Integer.parseInt(items.get(1));
         }catch (Exception e){
             return new Object[]{false, fuel, lumber};
         }
+        
+        
         
         if (checkPieceAndTileAreValid(tileToUse) == false) {
             return new Object[]{false, fuel, lumber};
@@ -172,11 +221,10 @@ public class HexGrid {
                 Object parameters = tiles.get(tileToUse).getTerrain();
                 if (items.get(0).equals("saw")) {
                     lumber += (int) method.invoke(thePiece, parameters);
+                    
                 } else if (items.get(0).equals("dig")) {
                     fuel += (int) method.invoke(thePiece, parameters);
-                    if (Math.abs(fuel) > 2) {
-                        tiles.get(tileToUse).setTerrain(" ");
-                    }
+                    
                 }
                 return new Object[]{true, fuel, lumber};
             } catch (Exception ex) {
@@ -282,8 +330,14 @@ public class HexGrid {
         //Serf belonging to the player whose turn it is and that player has at least 5 lumber available then 
         //it is upgraded to a LESSPiece or PBDSPiece according to the second string in Items and 5 is returned as the cost,
         //otherwise -1 is returned.
+        int tileToUse = 0;
+        try{
+            tileToUse = Integer.parseInt(items.get(2));
+        }catch (Exception e){
+            return -1;
+        }
         
-        int tileToUse = Integer.parseInt(items.get(2));
+        
         if (!checkPieceAndTileAreValid(tileToUse) || lumberAvailable < 5 || !(items.get(1).equals("pbds") || items.get(1).equals("less"))) {
             return -1;
         } else {
@@ -625,5 +679,17 @@ public class HexGrid {
         return false;
         
     }
+    
+    //-------------------------------------------------------------------------------------------------------------
+    
+    //task 7 makeField mothod which has the index of the tile needing to be made into a field tile
+    
+    public void makeField(List<String> items){
+        int tileToUse = Integer.parseInt(items.get(1));
+        tiles.get(tileToUse).setTerrain(" ");
+    }
+    
+    //77777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777
+    
     
 }

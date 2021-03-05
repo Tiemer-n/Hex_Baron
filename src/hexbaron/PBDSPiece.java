@@ -44,7 +44,13 @@ class PBDSPiece extends Piece {
         if (rNoGen.nextFloat() < 0.9) {
             return 1;
         } else {
-            return 5;
+            //return 5;
+            
+            //task 7 removing the possibility of getting a 10% chance of getting 5
+            
+            return 1;
+            
+            //---------
         }
     }
 }
