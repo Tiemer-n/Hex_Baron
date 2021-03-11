@@ -124,8 +124,21 @@ public class HexGrid {
                 }
                 lumberChange = lumberCost;
                 break;
-                
             //8888888888888888888888888888888888888888888888888888888
+                
+            //task 10 making a new salvage command 
+            case "salvage":
+                lumberCost =  executeSalvageCommand(items);
+                
+                if(lumberCost < 0 ){
+                    
+                    return new Object[]{"Salvage not possible", fuelChange, lumberChange, supplyChange};
+                    
+                }
+                supplyChange = -1;
+                lumberChange = lumberCost;
+                break;
+            //1010101010101010101010101010101010101010101010101010101010101010101010
         }
         return new Object[]{"Command executed", fuelChange, lumberChange, supplyChange};
     }
@@ -151,6 +164,39 @@ public class HexGrid {
         }
         return false;
     }
+    
+    //task 10 making new salvage command
+    private int executeSalvageCommand(List<String> items){
+        
+        int tileToUse = 0;
+        
+        try{
+            tileToUse = Integer.parseInt(items.get(1));
+        }catch (Exception e){
+            return -1;
+        }
+        
+        if (!checkPieceAndTileAreValid(tileToUse) || 
+                (tiles.get(tileToUse).getPieceInTile().pieceType.equals("B"))) {
+            return -1;
+        }else{
+            Piece thePiece = tiles.get(tileToUse).getPieceInTile();
+            
+            if (thePiece.getPieceType().toUpperCase().equals("B") ||
+                    thePiece.belongsToplayer1 != player1Turn){
+                return -1;
+            }
+            
+            thePiece.destroyPiece();
+            pieces.remove(thePiece);
+            tiles.get(tileToUse).setPiece(null);
+            return 5;
+        }
+        
+    }
+    //1010101010101010101010101010101010101010101010101010101010101010101010
+    
+    
     
     //task 8 making a new command 'downgrade'
     
