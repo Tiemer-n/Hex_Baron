@@ -316,58 +316,118 @@ public class HexGrid {
     
     private int executeSpawnCommand(List<String> items, int lumberAvailable, int piecesInSupply) {
         
+        int tileToUse;
         
-        int tileToUse = Integer.parseInt(items.get(1));
-        if (piecesInSupply < 1 || lumberAvailable < 3 || !checkTileIndexIsValid(tileToUse)) {
-            return -1;
-        }
-        Piece thePiece = tiles.get(tileToUse).getPieceInTile();
-        if (thePiece != null) {
-            return -1;
-        }
-        boolean ownBaronIsNeighbour = false;
-        List<Tile> listOfNeighbours = new ArrayList<>(tiles.get(tileToUse).getNeighbours());
-        for (Tile n : listOfNeighbours) {
-            thePiece = n.getPieceInTile();
+        if(items.size() == 3){
+            tileToUse = Integer.parseInt(items.get(2));
+            
+            if (piecesInSupply < 1 || lumberAvailable < 10 || !checkTileIndexIsValid(tileToUse)) {
+                return -1;
+            }
+            Piece thePiece = tiles.get(tileToUse).getPieceInTile();
             if (thePiece != null) {
-                if (player1Turn && thePiece.getPieceType().equals("B") || !player1Turn && thePiece.getPieceType().equals("b")) {
-                    ownBaronIsNeighbour = true;
-                    break;
+                return -1;
+            }
+            boolean ownBaronIsNeighbour = false;
+            List<Tile> listOfNeighbours = new ArrayList<>(tiles.get(tileToUse).getNeighbours());
+            for (Tile n : listOfNeighbours) {
+                thePiece = n.getPieceInTile();
+                if (thePiece != null) {
+                    if (player1Turn && thePiece.getPieceType().equals("B") || !player1Turn && thePiece.getPieceType().equals("b")) {
+                        ownBaronIsNeighbour = true;
+                        break;
+                    }
                 }
             }
-        }
 
-        //Task 4 making sure the player can only have 6 pieces on the board at a time
-        int countp1 = 0;
-        int countp2 = 0;
-        
-        
-        for (int i = 0; i < pieces.size(); i++) {
+            //Task 4 making sure the player can only have 6 pieces on the board at a time
+            int countp1 = 0;
+            int countp2 = 0;
 
-            Piece PieceTest = pieces.get(i);
-            if (PieceTest != null) {
-                if (PieceTest.belongsToplayer1) {
-                    countp1++;
-                } else if (!PieceTest.belongsToplayer1) {
-                    countp2++;
+
+            for (int i = 0; i < pieces.size(); i++) {
+
+                Piece PieceTest = pieces.get(i);
+                if (PieceTest != null) {
+                    if (PieceTest.belongsToplayer1) {
+                        countp1++;
+                    } else if (!PieceTest.belongsToplayer1) {
+                        countp2++;
+                    }
                 }
             }
+
+            if ((player1Turn && countp1 == 6) || (!player1Turn && countp2 == 6)) {
+                System.out.println("Spawn attempted to acceed max pieces ");
+
+                return -1;
+            }
+
+            if (!ownBaronIsNeighbour) {
+                return -1;
+            }
+            
+            Piece newPiece = new BOMBPiece(player1Turn);
+            pieces.add(newPiece);
+
+            tiles.get(tileToUse).setPiece(newPiece);
+            return 10;
+            
+        }else{
+            tileToUse = Integer.parseInt(items.get(1));
+            
+            if (piecesInSupply < 1 || lumberAvailable < 3 || !checkTileIndexIsValid(tileToUse)) {
+                return -1;
+            }
+            Piece thePiece = tiles.get(tileToUse).getPieceInTile();
+            if (thePiece != null) {
+                return -1;
+            }
+            boolean ownBaronIsNeighbour = false;
+            List<Tile> listOfNeighbours = new ArrayList<>(tiles.get(tileToUse).getNeighbours());
+            for (Tile n : listOfNeighbours) {
+                thePiece = n.getPieceInTile();
+                if (thePiece != null) {
+                    if (player1Turn && thePiece.getPieceType().equals("B") || !player1Turn && thePiece.getPieceType().equals("b")) {
+                        ownBaronIsNeighbour = true;
+                        break;
+                    }
+                }
+            }
+
+            //Task 4 making sure the player can only have 6 pieces on the board at a time
+            int countp1 = 0;
+            int countp2 = 0;
+
+
+            for (int i = 0; i < pieces.size(); i++) {
+
+                Piece PieceTest = pieces.get(i);
+                if (PieceTest != null) {
+                    if (PieceTest.belongsToplayer1) {
+                        countp1++;
+                    } else if (!PieceTest.belongsToplayer1) {
+                        countp2++;
+                    }
+                }
+            }
+
+            if ((player1Turn && countp1 == 6) || (!player1Turn && countp2 == 6)) {
+                System.out.println("Spawn attempted to acceed max pieces ");
+
+                return -1;
+            }
+
+            if (!ownBaronIsNeighbour) {
+                return -1;
+            }
+            Piece newPiece = new Piece(player1Turn);
+            pieces.add(newPiece);
+
+            tiles.get(tileToUse).setPiece(newPiece);
+            return 3;
         }
-
-        if ((player1Turn && countp1 == 6) || (!player1Turn && countp2 == 6)) {
-            System.out.println("Spawn attempted to acceed max pieces ");
-
-            return -1;
-        }
-
-        if (!ownBaronIsNeighbour) {
-            return -1;
-        }
-        Piece newPiece = new Piece(player1Turn);
-        pieces.add(newPiece);
-
-        tiles.get(tileToUse).setPiece(newPiece);
-        return 3;
+        
     }
 
     private int executeUpgradeCommand(List<String> items, int lumberAvailable) {

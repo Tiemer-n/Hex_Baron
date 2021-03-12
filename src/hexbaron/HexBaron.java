@@ -181,11 +181,19 @@ public class HexBaron {
 //        Otherwise it returns false.
         
         int result;
-        if (items.size() == 2) {
+        if (items.size() == 2 || items.size() == 3) {
+            
             try {
                 result = Integer.parseInt(items.get(1));
             } catch (Exception e) {
-                return false;
+                
+                
+                try{
+                    result = Integer.parseInt(items.get(2));   
+                    return true;
+                }catch(Exception r){
+                    return false;
+                }
             }
             return true;
         }
