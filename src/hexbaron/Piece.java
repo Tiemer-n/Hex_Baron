@@ -5,14 +5,17 @@
  */
 package hexbaron;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
  * @author ir191258
  */
 class Piece {
 
-    protected boolean destroyed, belongsToplayer1;
-    protected int fuelCostOfMove, vPValue, connectionsToDestroy;
+    protected boolean destroyed, belongsToplayer1, isPrimed;
+    protected int fuelCostOfMove, vPValue, connectionsToDestroy, movesLeft;
     protected String pieceType;
 
     public Piece(boolean player1) {
@@ -84,4 +87,54 @@ class Piece {
         
         destroyed = true;
     }
+    
+    public void removeMoves(){
+        
+    }
+    
+    public void setPrimed(){
+        
+    }
+    
+    public void explode(List<Tile> tiles, int bomb, Player player1, Player player2){
+        
+        Piece bombPiece = tiles.get(bomb).getPieceInTile();
+        List<Tile> listOfNeighbours = new ArrayList<>(tiles.get(bomb).getNeighbours());
+        List<Tile> listOfTilesContainingDestroyedPieces = new ArrayList<>();
+        
+        for (int i = 0; i < listOfNeighbours.size(); i++) {
+            
+            if(listOfNeighbours.get(i).getPieceInTile() != null){
+                
+               Piece NeighbourPiece = listOfNeighbours.get(i).getPieceInTile();
+
+
+                NeighbourPiece.destroyPiece();
+
+                listOfTilesContainingDestroyedPieces.add(listOfNeighbours.get(i));
+
+
+                if (NeighbourPiece.getBelongsToplayer1()) {
+                    player1.addTileToSupply(1);
+                    player2.addToVPs(NeighbourPiece.getVPs());
+                } else {
+                    player2.addTileToSupply(1);
+                    player1.addToVPs(NeighbourPiece.getVPs());
+                } 
+            }
+            
+
+        }   
+        
+        bombPiece.destroyPiece();
+        
+        
+        listOfTilesContainingDestroyedPieces.add(tiles.get(bomb));
+        
+        for (Tile t : listOfTilesContainingDestroyedPieces) {
+            t.setPiece(null);
+        }
+        
+    }
+    
 }

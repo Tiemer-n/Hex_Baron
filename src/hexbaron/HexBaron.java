@@ -123,8 +123,8 @@ public class HexBaron {
         String player2name = Console.readLine();
         
         
-        player1.setUpPlayer(player1name, 0, 10, 10, 5, 3);
-        player2.setUpPlayer(player2name, 0, 10, 10, 5, 3);
+        player1.setUpPlayer(player1name, 0, 30, 30, 5, 0);
+        player2.setUpPlayer(player2name, 0, 30, 30, 5, 0);
         
         // ---------------------------------------------------
         
@@ -134,7 +134,7 @@ public class HexBaron {
         
         //normal grid set up:
         
-        grid.addPiece(true, "Baron", 0);
+//        grid.addPiece(true, "Baron", 0);
         grid.addPiece(true, "Serf", 8);
         grid.addPiece(false, "Baron", 31);
         grid.addPiece(false, "Serf", 23);
@@ -446,7 +446,7 @@ public class HexBaron {
                     if (player1Turn) {
                         returnObjects = grid.executeCommand(items, fuelChange, lumberChange, supplyChange,
                                 player1.getFuel(), player1.getLumber(),
-                                player1.getPiecesInSupply());
+                                player1.getPiecesInSupply(), player1 , player2);
                         summaryOfResult = returnObjects[0].toString();
                         fuelChange = (int) returnObjects[1];
                         lumberChange = (int) returnObjects[2];
@@ -488,7 +488,7 @@ public class HexBaron {
                     } else {
                         returnObjects = grid.executeCommand(items, fuelChange, lumberChange, supplyChange,
                                 player2.getFuel(), player2.getLumber(),
-                                player2.getPiecesInSupply());
+                                player2.getPiecesInSupply(), player1 , player2);
                         summaryOfResult = returnObjects[0].toString();
                         fuelChange = (int) returnObjects[1];
                         lumberChange = (int) returnObjects[2];

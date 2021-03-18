@@ -69,7 +69,7 @@ public class HexGrid {
 
     public Object[] executeCommand(List<String> items, int fuelChange, int lumberChange,
             int supplyChange, int fuelAvailable, int lumberAvailable,
-            int piecesInSupply) {
+            int piecesInSupply, Player player1, Player player2) {
         
         //Depending on the first element of items, it either calls executeMoveCommand, executeSpawnCommand,
         //executeUpgradeCommand or executeCommandInTile.
@@ -81,7 +81,7 @@ public class HexGrid {
         int lumberCost;
         switch (items.get(0)) {
             case "move":
-                int fuelCost = executeMoveCommand(items, fuelAvailable);
+                int fuelCost = executeMoveCommand(items, fuelAvailable, player1 , player2);
                 if (fuelCost < 0) {
                     return new Object[]{"That move can't be done", fuelChange, lumberChange, supplyChange};
                 }
@@ -280,7 +280,7 @@ public class HexGrid {
         return new Object[]{false, fuel, lumber};
     }
 
-    private int executeMoveCommand(List<String> items, int fuelAvailable) {
+    private int executeMoveCommand(List<String> items, int fuelAvailable, Player player1, Player player2) {
         
         //Checks whether there is a piece belonging to the player in the tile specified 
         //as the second string in items and that the tile specified in the third string of items is empty,
@@ -304,8 +304,79 @@ public class HexGrid {
         if (fuelCost == -1 || fuelAvailable < fuelCost) {
             return -1;
         }
+        
+        //task 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 
+        if (thePiece.getPieceType().equals("N")){
+            
+            if(!thePiece.isPrimed && thePiece.movesLeft != 0){
+                thePiece.removeMoves();
+            }else if (!thePiece.isPrimed && thePiece.movesLeft == 0){
+                thePiece.setPrimed();
+            }
+            
+            
+            if(thePiece.movesLeft == -1){
+                System.out.println("this piece is primed");
+                return -1;
+            }
+        }
+        
         movePiece(endID, startID);
+        
+        if(!thePiece.getPieceType().equals("N")){
+            List<Tile> listOfNeighbours = new ArrayList<>(tiles.get(endID).getNeighbours());
+            
+            for (int i = 0; i < listOfNeighbours.size(); i++) {
+                if(listOfNeighbours.get(i).getPieceInTile() != null){
+                  if(listOfNeighbours.get(i).getPieceInTile().getPieceType().equals("N")){
+
+                        if(listOfNeighbours.get(i).getPieceInTile().isPrimed){
+
+                            //getting the index of the bomb
+                            int count = -1;
+                            OUTER:
+                            for (Tile t : tiles) {
+                                count++;
+                                if(t.getPieceInTile().getPieceType().equals("N")
+                                        && t.getPieceInTile().isPrimed){
+                                    List<Tile> listOfNeighbours2 = new ArrayList<>(t.getNeighbours());
+
+                                    for (int j = 0; j < listOfNeighbours2.size(); j++) {
+                                        if(listOfNeighbours2.get(i).getPieceInTile().equals(thePiece)){
+                                            break OUTER;
+                                        }
+                                    }
+
+                                }
+
+                            }
+
+
+
+
+                            //exploding the bomb 
+
+
+                            listOfNeighbours.get(i).getPieceInTile().explode(tiles, count, player1, player2);
+
+
+                            //-------------------
+                        }
+                    }  
+                }
+                
+                
+            }
+            
+        }
+        
+        //task 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 
+        
+        
         return fuelCost;
+        
+        
+        
     }
 //Checks to see whether the player has at least 1 pieceInSupply and 3 lumber and that the tile specified 
         //as the second string in the items list is empty, otherwise it returns -1.
@@ -524,6 +595,24 @@ public class HexGrid {
         
         boolean baronDestroyed = false;
         List<Tile> listOfTilesContainingDestroyedPieces = new ArrayList<>();
+        
+        //seeing if theres a baron for each player on the board
+        int counter = 0;
+        for (int i = 0; i < tiles.size(); i++) {
+            if(tiles.get(i).getPieceInTile() != null){
+               if(tiles.get(i).getPieceInTile().pieceType.equals("B")
+                    || tiles.get(i).getPieceInTile().pieceType.equals("b")){
+                    counter ++;
+                } 
+            }
+        }
+
+        if(counter != 2){
+            baronDestroyed = true;
+        }
+
+        //-----------------------------------------
+                    
         for (Tile t : tiles) {
             if (t.getPieceInTile() != null) {
                 List<Tile> listOfNeighbours = new ArrayList<>(t.getNeighbours());
@@ -539,6 +628,7 @@ public class HexGrid {
                     }
                     
                     //---------------------------------------------------------------------------
+
                 }
                 Piece thePiece = t.getPieceInTile();
                 if (noOfConnections >= thePiece.getConnectionsNeededToDestroy()) {
@@ -547,6 +637,39 @@ public class HexGrid {
                     if (thePiece.getPieceType().toUpperCase().equals("B")) {
                         baronDestroyed = true;
                     }
+                    
+                    
+                    //task 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 
+                    
+                    if (thePiece.getPieceType().toUpperCase().toUpperCase().equals("N")) {
+                        //explodes and destroys all the surrounding pieces
+                        
+                        for (int i = 0; i < listOfNeighbours.size(); i++) {
+                            if(listOfNeighbours.get(i).getPieceInTile() != null){
+                                Piece NeighbourPiece = listOfNeighbours.get(i).getPieceInTile();
+                            
+                                if(listOfNeighbours.get(i).getPieceInTile().getPieceType().toUpperCase().equals("B")){
+                                    baronDestroyed = true;
+                                }
+                                
+                                NeighbourPiece.destroyPiece();
+                                listOfTilesContainingDestroyedPieces.add(listOfNeighbours.get(i));
+
+                                if (NeighbourPiece.getBelongsToplayer1()) {
+                                    player1.addTileToSupply(1);
+                                    player2VPs += NeighbourPiece.getVPs();
+                                } else {
+                                    player2.addTileToSupply(1);
+                                    player1VPs += NeighbourPiece.getVPs();
+                                }
+                            }
+                        }
+                    }
+                    
+                    // 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 
+                    
+                    
+                    
                     listOfTilesContainingDestroyedPieces.add(t);
                     if (thePiece.getBelongsToplayer1()) {
                         player1.addTileToSupply(1);
@@ -556,6 +679,9 @@ public class HexGrid {
                         player1VPs += thePiece.getVPs();
                     }
                 }
+                
+                
+                    
             }
         }
         for (Tile t : listOfTilesContainingDestroyedPieces) {
@@ -563,6 +689,7 @@ public class HexGrid {
         }
         return new Object[]{baronDestroyed, player1VPs, player2VPs};
     }
+    
     
     private void movePiece(int newIndex, int oldIndex) {
             tiles.get(newIndex).setPiece(tiles.get(oldIndex).getPieceInTile());
@@ -576,10 +703,16 @@ public class HexGrid {
 
         Piece thePiece = tiles.get(id).getPieceInTile();
         if (thePiece == null) {
-            return " ";
-        } else {
+            return " ";//task 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 
+          
+        }else if( thePiece.getPieceType().equals("N")){ 
+            return "S";
+        }else if(thePiece.getPieceType().equals("n")){
+            return "s";
+        }else {
             return thePiece.getPieceType();
         }
+        
     }
     public String getGridAsString(boolean P1Turn) {
         

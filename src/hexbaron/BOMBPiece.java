@@ -5,16 +5,26 @@ package hexbaron;
 //task 12 making a new bomb piece 
 public class BOMBPiece extends Piece{
     
-    int movesLeft = 5;
-    boolean isPrimed = false;
     
     public BOMBPiece(boolean player1) {
         super(player1);
         vPValue = 5;
         fuelCostOfMove = 2;
         pieceType = "N";
+        movesLeft = 5;
+        isPrimed = false;
     }
     
+    
+    @Override
+    public void removeMoves(){
+        movesLeft --;
+    }
+    
+    @Override
+    public void setPrimed(){
+        isPrimed = true;
+    }
     
     
 }
